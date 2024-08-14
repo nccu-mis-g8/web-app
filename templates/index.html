@@ -9,5 +9,14 @@
 <body>
     <h1>Index Page</h1>
     <!-- <script src="{{ url_for('static', filename='js/keep_alive.js') }}"></script> -->
+     <script>
+         window.onload = function() {
+            // 檢查 localStorage 是否有 token
+            if (!localStorage.getItem('token')) {
+                // 如果沒有 token，重定向到 login 頁面
+                window.location.href = '/login';
+            }
+        };
+     </script>
 </body>
 </html>
