@@ -1,0 +1,17 @@
+﻿# PyInstaller
+build/
+dist/
+*.spec
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Other common files to ignore
+*.log
+*.tmp
+
+# If you have any environment-specific files, add them here
+.env
+
+.history
