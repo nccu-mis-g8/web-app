@@ -1,0 +1,21 @@
+﻿.customTextarea {
+    /* width: 100%; */
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: #f2f3f5;
+    font-size: 16px;
+    color: #626060;
+    line-height: 1.5;
+    overflow-y: auto; /* 超過範圍時，使用xy捲軸 */
+    max-height: 140px;
+}
+
+.sendButton {
+    background: transparent;
+    margin-left: 20px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+}
