@@ -15,17 +15,9 @@ app.register_blueprint(upload_bp, url_prefix='/upload')
 def hello():  
     return render_template('index.html')
 
-@app.route("/test22")
-def test22():  
-    return render_template('index.html')
-
 @app.route("/login")
 def login():
-    return render_template('login.html')
-
-@app.route("/chat_room")
-def chatRoom():
-    return render_template('chat_room.html')
+    return render_template('index.html')
 
 if __name__ == "__main__":
   # debugging 

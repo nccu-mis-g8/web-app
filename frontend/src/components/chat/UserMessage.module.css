@@ -1,0 +1,14 @@
+﻿.messageContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.messageBubble {
+    max-width: 60%;
+    background-color: #789de5;
+    padding: 10px;
+    border-radius: 25px;
+    border-top-right-radius: 0px;
+    color: white;
+}

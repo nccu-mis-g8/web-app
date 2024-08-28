@@ -1,0 +1,22 @@
+﻿.barContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout {
+    justify-items: flex-end;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: blanchedalmond;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: blanchedalmond;
+}
