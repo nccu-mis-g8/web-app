@@ -1,4 +1,5 @@
 ﻿import classes from "./NavigationBar.module.css";
+import logout from "../images/logout.png";
 
 function NavigationBar() {
     return (
@@ -6,7 +7,7 @@ function NavigationBar() {
             <img className={classes.avatar} alt=""/>
             <img className={classes.avatar} alt=""/>
             <img className={classes.avatar} alt=""/>
-            <img className={classes.logout} alt=""/>
+            <img src={logout} className={classes.logout} alt="登出"/>
         </div>
     );
 }
