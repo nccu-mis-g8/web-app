@@ -1,0 +1,54 @@
+﻿.outerContainer {
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.messageInputWrapper {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.textareaContainer {
+    position: relative;
+    border-radius: 25px;
+    border: 1px solid #dcdcdcf5;
+    padding: 5px 15px;
+    background-color: #ebebeb;
+    display: flex;
+    flex-grow: 1; /*使容器隨著螢幕寬度變化*/
+    align-items: center;
+}
+
+
+.customTextarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: #ebebeb;
+    font-size: 16px;
+    color: #626060;
+    line-height: 1.5;
+    overflow-y: auto; /* 超過範圍時，使用xy捲軸 */
+    max-height: 140px;
+}
+
+.customTextarea::placeholder {
+    color: #a7a7a7;
+}
+
+.sendButton {
+    background: transparent;
+    margin-left: 15px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+}

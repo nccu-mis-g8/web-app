@@ -1,0 +1,18 @@
+﻿.outerContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgba(236, 235, 235, 0.5);
+}
+
+.listContainer {
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+    min-height: 0;
+    flex-grow: 1;
+}
+
+.listContainer::-webkit-scrollbar {
+    display: none;
+}

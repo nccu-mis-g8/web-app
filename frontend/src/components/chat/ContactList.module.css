@@ -1,0 +1,43 @@
+﻿.outerContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.title {
+    margin: 15px;
+}
+
+.listContainer {
+    overflow-y: auto;
+    min-height: 0;
+    flex-grow: 1;
+}
+
+/* 整個滑桿 */
+.listContainer::-webkit-scrollbar {
+    width: 0px; /* 滑桿寬度 */
+}
+
+/* 整個滑桿 */
+.listContainer:hover::-webkit-scrollbar {
+    width: 8px; /* 滑桿寬度 */
+}
+
+/* 滚动条滑块 */
+.listContainer::-webkit-scrollbar-thumb {
+    background-color: #c2c2c2;
+    border-radius: 10px;
+    border: 2px solid #f2f3f5; /* 在滑塊旁邊加上邊框，讓滑塊看起來更細 */
+}
+
+/* 滑鼠在滑桿上時 */
+.listContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #a9a9a9;
+}
+
+/* 滑桿軌道 */
+.listContainer::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+}

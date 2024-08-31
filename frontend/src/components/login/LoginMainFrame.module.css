@@ -1,0 +1,48 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.formContainer {
+    width: 80%;
+    max-width: 600px;
+}
+
+.inputGroup {
+    margin-bottom: 25px;
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: #f2f3f5;
+}
+
+.inputGroup input {
+    flex: 1;
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: #f2f3f5;
+}
+
+.customPlaceholder:placeholder {
+    color: #b7b7b7;
+}
+
+.loginButton {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.loginButton:enabled {
+    background-color: #4b73d7;
+    cursor: pointer
+}

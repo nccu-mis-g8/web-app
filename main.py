@@ -16,6 +16,9 @@ app.register_blueprint(upload_bp, url_prefix='/upload')
 def hello():  
     return render_template('index.html')
 
+@app.route("/login")
+def login():
+    return render_template('index.html')
 
 if __name__ == "__main__":
   # debugging 
