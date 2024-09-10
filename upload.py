@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory, current_app
 from werkzeug.utils import secure_filename
-import line_to_llama_flw 
+import line_to_llama_flw as lineHandler
 
 ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
@@ -28,8 +28,7 @@ def upload_file():
         filename = secure_filename(file.filename)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
 
-        processor = line_to_llama_flw.LineChatProcessor()
-        processor.process()
+        lineHandler.handle_txt_file()
         
         return redirect(url_for('upload.uploaded_file', filename=filename))
 
