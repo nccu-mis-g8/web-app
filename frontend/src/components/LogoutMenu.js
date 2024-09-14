@@ -22,13 +22,15 @@ function LogoutMenu({ cancelLogout }) {
             );
 
             if (response.status === 200) {
+                localStorage.clear(); // 清除local storage裡存的東西
                 console.log("登出成功");
             } else {
                 const responseData = await response.json();
                 const error = responseData.message;
                 console.error(error);
             }
-
+            
+            localStorage.clear(); // 清除local storage裡存的東西
         } catch(error) {
             console.error("Error durning logout: ", error);
         }
