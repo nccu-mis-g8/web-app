@@ -8,11 +8,12 @@ import csv
 # master = "陳奕利Jefferson Chen"
 # 放LINE聊天記錄txt檔的目錄
 
+#可能會要有User name，現在暫時用User的line名子
 class LineChatProcessor:
-    def __init__(self, data_dir="./", output_file_name="training_data_flw.csv", master_name="祐辰"):
+    def __init__(self, data_dir="./", master_name="祐辰"):
         self.data_dir = data_dir
-        self.output_file_name = output_file_name
         self.master_name = master_name
+        self.output_file_name = f"{master_name}_training_data_flw.csv"
         self.instructions_list = []
         self.inputs_list = []
         self.outputs_list = []

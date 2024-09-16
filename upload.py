@@ -1,7 +1,8 @@
 import os
 from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory, current_app
 from werkzeug.utils import secure_filename
-import line_to_llama_flw 
+import utils.line_to_llama_flw as line_to_llama_flw 
+from utils import server_request
 
 ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
