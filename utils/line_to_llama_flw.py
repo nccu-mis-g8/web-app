@@ -10,10 +10,11 @@ import csv
 
 #可能會要有User name，現在暫時用User的line名子
 class LineChatProcessor:
-    def __init__(self, data_dir="./", master_name="祐辰"):
+    def __init__(self, output_name,data_dir="./upload_files", master_name="祐辰"):
         self.data_dir = data_dir
         self.master_name = master_name
-        self.output_file_name = f"{master_name}_training_data_flw.csv"
+        self.output_name = output_name
+        self.output_file_name = f"./upload_files/{output_name}_training_data_flw.csv"
         self.instructions_list = []
         self.inputs_list = []
         self.outputs_list = []
@@ -28,11 +29,14 @@ class LineChatProcessor:
         lines = None
         with open(file_name, encoding="utf-8") as f:
             lines = f.readlines()
+
+        print(len(lines))
         if lines is None:
             return
         pre_is_master = False
 
         for i in range(4, len(lines)):
+            print(lines[i])
             if (lines[i]) == "\n":
                 continue
             if lines[i].endswith("已收回訊息"):
@@ -85,7 +89,9 @@ class LineChatProcessor:
             if isfile(join(self.data_dir, f)) and f.endswith("的聊天.txt")
         ]
         for f in files:
-            self.create_formatted_content(f)
+            self.create_formatted_content(f'./upload_files/{f}')
+
+        print(self.inputs_list)
         self.output_file()
         print("done...")
         print(f"total length: {len(self.instructions_list)}")
