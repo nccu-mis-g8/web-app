@@ -68,6 +68,7 @@ function LoginMainFrame() {
                     type="text"
                     className={classes.customPlaceholder}
                     placeholder="帳號"
+                    autoComplete="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
@@ -76,6 +77,7 @@ function LoginMainFrame() {
                     type="password"
                     className={classes.customPlaceholder}
                     placeholder="密碼"
+                    autoComplete="current-password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
