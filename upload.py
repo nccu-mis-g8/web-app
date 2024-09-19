@@ -30,8 +30,8 @@ def upload_file():
         # filename = secure_filename(file.filename)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         # 之後要改成request user ID
-        userId = 'user0'
-        master_name = "祐辰"
+        userId = request.form.get('userId')
+        master_name = request.form.get('master_name')
 
         processor = line_to_llama_flw.LineChatProcessor(output_name=userId,master_name=master_name)
         processor.process()
