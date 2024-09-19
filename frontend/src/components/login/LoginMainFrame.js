@@ -4,13 +4,13 @@ import classes from "./LoginMainFrame.module.css"
 
 function LoginMainFrame() {
 
-    const [username, setUsername] = useState("");
+    const [account, setAccount] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
-    const isFormValid =  username.trim() !== "" && password.trim() !== ""; // 確認ID跟密碼已經輸入了
+    const isFormValid =  account.trim() !== "" && password.trim() !== ""; // 確認ID跟密碼已經輸入了
 
     async function loginHandler(e) {
         e.preventDefault(); // 阻止表單默認的提交行為
@@ -25,7 +25,7 @@ function LoginMainFrame() {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        "username": username,
+                        "account": account,
                         "password": password
                     }),
                 }
@@ -68,8 +68,8 @@ function LoginMainFrame() {
                     type="text"
                     className={classes.customPlaceholder}
                     placeholder="帳號"
-                    autoComplete="username"
-                    onChange={(e) => setUsername(e.target.value)}
+                    autoComplete="account"
+                    onChange={(e) => setAccount(e.target.value)}
                 />
             </div>
             <div className={classes.inputGroup}>
