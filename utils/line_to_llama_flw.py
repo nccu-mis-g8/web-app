@@ -10,7 +10,7 @@ import csv
 
 #可能會要有User name，現在暫時用User的line名子
 class LineChatProcessor:
-    def __init__(self, output_name,data_dir="./upload_files", master_name="祐辰"):
+    def __init__(self, output_name, master_name="", data_dir="./upload_files"):
         self.data_dir = data_dir
         self.master_name = master_name
         self.output_name = output_name
@@ -22,6 +22,10 @@ class LineChatProcessor:
     def is_master(self, name):
         return self.master_name in name
     
+    def is_master_name_empty(self):
+        if(self.master_name == ""):
+            return False
+
     def create_formatted_content(self, file_name):
         instruction = ""
         input = ""
@@ -83,6 +87,9 @@ class LineChatProcessor:
                 )
         
     def process(self):
+        if(not self.is_master_name_empty):
+            return
+        
         files = [
             f
             for f in listdir(self.data_dir)
@@ -91,7 +98,6 @@ class LineChatProcessor:
         for f in files:
             self.create_formatted_content(f'./upload_files/{f}')
 
-        print(self.inputs_list)
         self.output_file()
         print("done...")
         print(f"total length: {len(self.instructions_list)}")

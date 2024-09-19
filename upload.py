@@ -30,12 +30,13 @@ def upload_file():
         # filename = secure_filename(file.filename)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         # 之後要改成request user ID
-        masterName = 'user0'
+        userId = 'user0'
+        master_name = "祐辰"
 
-        processor = line_to_llama_flw.LineChatProcessor(output_name=masterName)
+        processor = line_to_llama_flw.LineChatProcessor(output_name=userId,master_name=master_name)
         processor.process()
 
-        server_request.upload_to_server(f'./upload_files/{masterName}_training_data_flw.csv')
+        server_request.upload_to_server(file_path=f'./upload_files/{userId}_training_data_flw.csv', user_id=userId)
 
         return redirect(url_for('upload.uploaded_file', filename=filename))
 
