@@ -32,15 +32,12 @@ def upload_file():
         # 之後要改成request user ID
         userId = request.form.get('userId')
         master_name = request.form.get('master_name')
-
         processor = line_to_llama_flw.LineChatProcessor(output_name=userId,master_name=master_name)
         processor.process()
 
         server_request.upload_to_server(file_path=f'./upload_files/{userId}_training_data_flw.csv', user_id=userId)
-
         return redirect(url_for('upload.uploaded_file', filename=filename))
-
-    return render_template('upload.html')
+    # return render_template('upload.html')
 
 @upload_bp.route('/uploads/<filename>')
 def uploaded_file(filename):

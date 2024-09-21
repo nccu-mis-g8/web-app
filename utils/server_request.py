@@ -4,9 +4,9 @@ def upload_to_server(file_path, user_id):
     
     #改成主機IP
     
-    server_url = "http://127.0.0.1:5001/upload"
+    server_url = "http://127.0.0.1:5001/utils/user/upload_file"
 
-    user_info = {"userId": user_id}
+    user_info = {"user_Id": user_id}
 
     files = {'file': open(file_path, 'rb')}
 

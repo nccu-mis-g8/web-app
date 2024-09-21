@@ -40,7 +40,6 @@ class LineChatProcessor:
         pre_is_master = False
 
         for i in range(4, len(lines)):
-            print(lines[i])
             if (lines[i]) == "\n":
                 continue
             if lines[i].endswith("已收回訊息"):

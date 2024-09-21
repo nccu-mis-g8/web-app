@@ -1,10 +1,13 @@
 ﻿#main.py
 
 from flask import Flask  
+from flask_cors import CORS
 from flask import render_template
 from upload import upload_bp
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/upload/*": {"origins": "http://localhost:3000"}})
 
 # app.config['UPLOAD_FOLDER'] = r'C:\Users\user\Downloads\upload_files'
 app.config['UPLOAD_FOLDER'] = r'./upload_files'

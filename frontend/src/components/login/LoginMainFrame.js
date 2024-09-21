@@ -34,12 +34,14 @@ function LoginMainFrame() {
             if(response.status === 200) {
                 const responseData = await response.json();
         
-                // 儲存 Tokens
+                // 儲存 Tokens 及必要資訊
                 console.log("登入成功");
-                const access_token = responseData.access_token;
-                const refresh_token = responseData.refresh_token;
-                localStorage.setItem("accessToken", access_token);
-                localStorage.setItem("refreshToken", refresh_token);
+                const accessToken = responseData.access_token;
+                const refreshToken = responseData.refresh_token;
+                const userId = responseData.user_id;
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
+                localStorage.setItem("userId", userId);
 
                 navigate("/"); // 重新導向到主畫面
             } else if (response.status === 401) {
