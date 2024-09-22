@@ -1,39 +1,53 @@
 ﻿import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import classes from "./LoginMainFrame.module.css"
+import accountImg from "../../images/account.png";
+import passwordImg from "../../images/password.png";
+import openEye from "../../images/openEye.png";
+import closeEye from "../../images/closeEye.png";
+import classes from "./LoginMainFrame.module.css";
 
 function LoginMainFrame() {
-
     const [account, setAccount] = useState("");
     const [password, setPassword] = useState("");
+    const [showPasswordState, setShowPasswordState] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
-    const isFormValid =  account.trim() !== "" && password.trim() !== ""; // 確認ID跟密碼已經輸入了
+    const isFormValid = account.trim() !== "" && password.trim() !== ""; // 確認ID跟密碼已經輸入了
+
+    function accountChangeHandler(e) {
+        setAccount(e.target.value);
+        setErrorMessage("");
+    }
+
+    function passwordChangeHandler(e) {
+        setPassword(e.target.value);
+        setErrorMessage("");
+    }
+
+    function togglePasswordVisibility() {
+        setShowPasswordState(!showPasswordState);
+    }
 
     async function loginHandler(e) {
         e.preventDefault(); // 阻止表單默認的提交行為
 
         try {
-            
-            const response = await fetch(
-                "http://127.0.0.1:5001/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        "account": account,
-                        "password": password
-                    }),
-                }
-            );
+            const response = await fetch("http://127.0.0.1:5001/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    account: account,
+                    password: password,
+                }),
+            });
 
-            if(response.status === 200) {
+            if (response.status === 200) {
                 const responseData = await response.json();
-        
+
                 // 儲存 Tokens 及必要資訊
                 console.log("登入成功");
                 const accessToken = responseData.access_token;
@@ -55,34 +69,44 @@ function LoginMainFrame() {
                 console.error(error);
                 alert("發生錯誤，請重新整理後再試一次");
             }
-
-        } catch(error) {
+        } catch (error) {
             console.error("Error durning login: ", error);
         }
-
     }
-
 
     return (
         <Form onSubmit={loginHandler} className={classes.formContainer}>
             <div className={classes.inputGroup}>
+                <img src={accountImg} className={classes.inputImg} alt="帳號" />
                 <input
                     type="text"
                     className={classes.customPlaceholder}
                     placeholder="帳號"
                     autoComplete="account"
-                    onChange={(e) => setAccount(e.target.value)}
+                    onChange={accountChangeHandler}
                 />
             </div>
-            <div className={classes.inputGroup}>
+            <div className={classes.inputGroup2}>
+                <img
+                    src={passwordImg}
+                    className={classes.inputImg}
+                    alt="密碼"
+                />
                 <input
-                    type="password"
+                    type={showPasswordState ? "text" : "password"}
                     className={classes.customPlaceholder}
                     placeholder="密碼"
                     autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={passwordChangeHandler}
+                />
+                <img
+                    src={showPasswordState ? openEye : closeEye}
+                    className={classes.eyeIcon}
+                    onClick={togglePasswordVisibility}
+                    alt="隱藏密碼"
                 />
             </div>
+            <div className={classes.error}>{errorMessage}</div>
             <button className={classes.loginButton} disabled={!isFormValid}>
                 登入
             </button>

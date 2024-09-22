@@ -1,0 +1,47 @@
+﻿.container {
+    height: 100vh;
+    background: linear-gradient(to top right, #1338cd 0%, #b511cb 75%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before, .container::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(96, 6, 114, 0.1);
+    top: 50px;
+    right: -400px;
+    transform: rotate(55deg);
+}
+
+.container::after {
+    background: rgba(255, 255, 255, 0.1);
+    top: 100px;
+    left: -370px;
+}
+
+.outerWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 80%;
+    max-width: 500px;
+    padding: 50px 5px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.title {
+    font-weight: bold;
+    font-family: Sofadi One;
+    font-size: 30px;
+    margin-bottom: 25px;
+}

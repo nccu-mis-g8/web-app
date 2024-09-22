@@ -1,8 +1,8 @@
-﻿import LoginMainFrame from "../components/login/LoginMainFrame";
+﻿import LoginBackground from "../components/login/LoginBackground";
 
 function Login() {
     return (
-        <LoginMainFrame />
+        <LoginBackground />
     );
 }
 
