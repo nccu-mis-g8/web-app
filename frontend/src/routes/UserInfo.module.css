@@ -1,0 +1,14 @@
+﻿.container {
+    display: flex;
+}
+
+.left {
+    flex: 1;
+    min-width: 70px;
+    max-width: 80px;
+    border-right: 1px solid rgba(180, 180, 180, 0.5);
+}
+
+.right {
+    flex: 9;
+}

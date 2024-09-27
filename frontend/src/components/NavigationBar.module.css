@@ -5,6 +5,16 @@
     height: 100vh;
 }
 
+.userIcon {
+    width: 45px;
+    height: 45px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(237, 232, 232);
+}
+
 .icon {
     width: 35px;
     height: 35px;
