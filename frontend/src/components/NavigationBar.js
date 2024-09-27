@@ -19,6 +19,10 @@ function NavigationBar() {
         setShowLogoutMenu(false);
     }
 
+    function redirectToChat() {
+        navigate("/");
+    }
+
     function redirectToUpload() {
         navigate("/upload");
     }
@@ -26,7 +30,8 @@ function NavigationBar() {
 
     return (
         <div className={classes.barContainer}>
-            <img src={chat} className={classes.icon} alt="聊天室"/>
+            <img src={chat} className={classes.icon} alt="聊天室" onClick={redirectToChat}/>
+            <img src={chat} className={classes.icon} alt="聊天室" onClick={redirectToChat}/>
             <div className={classes.illustration}>聊天室</div>
             <img src={upload} className={classes.icon} alt="上傳" onClick={redirectToUpload}/>
             <div className={classes.illustration}>上傳</div>

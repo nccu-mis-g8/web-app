@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./routes/PrivateRoute";
 import ChatRoom from "./routes/ChatRoom";
 import Login from "./routes/Login";
+import Register from "./routes/Register";
 import Upload from "./routes/Upload";
 
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     { path: "/", element: <PrivateRoute element={<ChatRoom />} /> },
     { path: "/login", element: <Login /> },
     { path: "/upload", element: <Upload /> },
+    { path: "/register", element: <Register /> },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
