@@ -1,6 +1,7 @@
 ﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
+import bot_avatar from "../images/bot_avatar.png";
 import chat from "../images/chat.png";
 import upload from "../images/upload.png";
 import logout from "../images/logout.png";
@@ -19,6 +20,10 @@ function NavigationBar() {
         setShowLogoutMenu(false);
     }
 
+    function redirectToUserInfo() {
+        navigate("/user_info");
+    }
+
     function redirectToChat() {
         navigate("/");
     }
@@ -30,7 +35,7 @@ function NavigationBar() {
 
     return (
         <div className={classes.barContainer}>
-            <img src={chat} className={classes.icon} alt="聊天室" onClick={redirectToChat}/>
+            <img src={bot_avatar} className={classes.userIcon} alt="使用者資訊" onClick={redirectToUserInfo}/>
             <img src={chat} className={classes.icon} alt="聊天室" onClick={redirectToChat}/>
             <div className={classes.illustration}>聊天室</div>
             <img src={upload} className={classes.icon} alt="上傳" onClick={redirectToUpload}/>
