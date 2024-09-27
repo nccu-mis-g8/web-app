@@ -53,9 +53,15 @@ function LoginMainFrame() {
                 const accessToken = responseData.access_token;
                 const refreshToken = responseData.refresh_token;
                 const userId = responseData.user_id;
+                const lastName = responseData.lastname;
+                const firstName = responseData.firstname;
+                const account = responseData.account;
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
                 localStorage.setItem("userId", userId);
+                localStorage.setItem("lastName", lastName);
+                localStorage.setItem("firstName", firstName);
+                localStorage.setItem("account", account);
 
                 navigate("/"); // 重新導向到主畫面
             } else if (response.status === 401) {
