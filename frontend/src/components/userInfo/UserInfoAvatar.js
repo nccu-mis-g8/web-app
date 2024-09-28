@@ -9,7 +9,7 @@ function UserInfoMainFrame() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [showOption, setShowOption] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [userAvatar, setUserAvatar] = useState(null);
+    const [userAvatar, setUserAvatar] = useState(default_avatar200);
 
     const userId = localStorage.getItem("userId");
     const lastName = localStorage.getItem("lastName");

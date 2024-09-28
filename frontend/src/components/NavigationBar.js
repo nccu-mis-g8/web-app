@@ -10,7 +10,7 @@ import { getUserAvatar } from "../utils/userInfoUtils";
 
 function NavigationBar() {
     const [showLogoutMenu, setShowLogoutMenu] = useState(false);
-    const [userAvatar, setUserAvatar] = useState(null);
+    const [userAvatar, setUserAvatar] = useState(bot_avatar);
 
     useEffect(() => {
         async function fetchUserAvatar() {
