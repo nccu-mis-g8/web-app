@@ -13,6 +13,7 @@
     cursor: pointer;
     border-radius: 50%;
     background-color: rgb(237, 232, 232);
+    object-fit: cover;
 }
 
 .icon {

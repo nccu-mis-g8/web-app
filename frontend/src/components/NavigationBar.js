@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
 import bot_avatar from "../images/bot_avatar.png";
@@ -6,9 +6,23 @@ import chat from "../images/chat.png";
 import upload from "../images/upload.png";
 import logout from "../images/logout.png";
 import LogoutMenu from "./LogoutMenu";
+import { getUserAvatar } from "../utils/userInfoUtils";
 
 function NavigationBar() {
     const [showLogoutMenu, setShowLogoutMenu] = useState(false);
+    const [userAvatar, setUserAvatar] = useState(null);
+
+    useEffect(() => {
+        async function fetchUserAvatar() {
+            const avatarUrl = await getUserAvatar();
+            if (avatarUrl) {
+                setUserAvatar(avatarUrl);
+            } else {
+                setUserAvatar(bot_avatar);
+            }
+        }
+        fetchUserAvatar();
+    }, [])
 
     const navigate = useNavigate();
 
@@ -35,7 +49,7 @@ function NavigationBar() {
 
     return (
         <div className={classes.barContainer}>
-            <img src={bot_avatar} className={classes.userIcon} alt="使用者資訊" onClick={redirectToUserInfo}/>
+            <img src={userAvatar} className={classes.userIcon} alt="使用者資訊" onClick={redirectToUserInfo}/>
             <img src={chat} className={classes.icon} alt="聊天室" onClick={redirectToChat}/>
             <div className={classes.illustration}>聊天室</div>
             <img src={upload} className={classes.icon} alt="上傳" onClick={redirectToUpload}/>
