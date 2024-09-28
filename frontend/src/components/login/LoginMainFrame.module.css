@@ -5,8 +5,8 @@
 }
 
 .formContainer {
-    width: 80%;
-    max-width: 600px;
+    width: 50%;
+    max-width: 400px;
 }
 
 /* for account */
@@ -45,7 +45,7 @@
 .inputGroup input, .inputGroup2 input {
     flex: 1;
     width: 80%;
-    max-width: 600px;
+    max-width: 400px;
     padding: 10px;
     border: none;
     outline: none;
@@ -69,13 +69,16 @@
     margin-top: 20px;
     background-color: #ccc;
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 16px;
     color: #fff;
     cursor: not-allowed;
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
 }
 
 .loginButton:enabled {
-    background: linear-gradient(to right, #8195e6 0%, #c861d5 100%);;
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
     cursor: pointer
 }

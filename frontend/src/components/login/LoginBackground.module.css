@@ -1,6 +1,6 @@
 ﻿.container {
     height: 100vh;
-    background: linear-gradient(to top right, #1338cd 0%, #b511cb 75%);
+    background: linear-gradient(to right, #ac72a1, #a891a9, #0d132f);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,42 +8,27 @@
     overflow: hidden;
 }
 
-.container::before, .container::after {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(96, 6, 114, 0.1);
-    top: 50px;
-    right: -400px;
-    transform: rotate(55deg);
-}
-
-.container::after {
-    background: rgba(255, 255, 255, 0.1);
-    top: 100px;
-    left: -370px;
-}
-
 .outerWrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background: linear-gradient(to right, #d5b5d2, #e6d6e8, #b0a7ba);
+    border-radius: 15px;
+    border: 3px solid white;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     width: 80%;
-    max-width: 500px;
-    padding: 50px 5px;
-    border-radius: 10px;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-    z-index: 2;
+    max-width: 800px;
+    padding: 30px 5px;
 }
 
 .title {
-    font-weight: bold;
-    font-family: Sofadi One;
-    font-size: 30px;
-    margin-bottom: 25px;
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 40px;
+    color: #4f3c55;
+    margin-bottom: 50px;
 }
 
 .register {
