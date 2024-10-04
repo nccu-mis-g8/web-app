@@ -1,6 +1,6 @@
 ﻿import { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import accountImg from "../../images/account.png";
+import mail from "../../images/mail.png";
 import passwordImg from "../../images/password.png";
 import openEye from "../../images/openEye.png";
 import closeEye from "../../images/closeEye.png";
@@ -40,7 +40,7 @@ function LoginMainFrame() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    account: account,
+                    email: account,
                     password: password,
                 }),
             });
@@ -83,11 +83,11 @@ function LoginMainFrame() {
     return (
         <Form onSubmit={loginHandler} className={classes.formContainer}>
             <div className={classes.inputGroup}>
-                <img src={accountImg} className={classes.inputImg} alt="帳號" />
+                <img src={mail} className={classes.inputImg} alt="信箱" />
                 <input
-                    type="text"
+                    type="email"
                     className={classes.customPlaceholder}
-                    placeholder="帳號"
+                    placeholder="信箱"
                     autoComplete="account"
                     onChange={accountChangeHandler}
                 />

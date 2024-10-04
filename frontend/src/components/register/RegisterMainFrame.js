@@ -1,5 +1,9 @@
 ﻿import { useState, useEffect } from "react";
 import { Form, useNavigate } from "react-router-dom";
+import nameInput from "../../images/nameInput.png";
+import mail from "../../images/mail.png";
+import passwordImg from "../../images/password.png";
+import checkPasswordImg from "../../images/checkPassword.png";
 import openEye from "../../images/openEye.png";
 import closeEye from "../../images/closeEye.png";
 import classes from "./RegisterMainFrame.module.css";
@@ -21,6 +25,7 @@ function RegisterMainFrame() {
 
     const navigate = useNavigate();
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     useEffect(() => {
         if (lastName && firstName && account && password && checkPassword) {
@@ -58,6 +63,11 @@ function RegisterMainFrame() {
     async function submitHandler(e) {
         e.preventDefault();
 
+        if (!emailRegex.test(account)) {
+            setAccountError("請輸入有效的信箱");
+            return
+        }
+
         if (!passwordPattern.test(password)) {
             setPasswordError("密碼不符合格式");
             return
@@ -75,7 +85,7 @@ function RegisterMainFrame() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    account: account,
+                    email: account,
                     firstname: firstName,
                     lastname: lastName,
                     password: password,
@@ -87,6 +97,7 @@ function RegisterMainFrame() {
                 alert("註冊成功");
                 navigate("/login"); // 重新導向到登入頁面
             } else if (response.status === 400) {
+                // 電子郵件已被使用
                 const responseData = await response.json();
                 const error = responseData.message;
                 setAccountError(error);
@@ -104,12 +115,9 @@ function RegisterMainFrame() {
 
     return (
         <Form className={classes.formContainer} onSubmit={submitHandler}>
-            <div className={classes.label}>
-                <span>姓名</span>
-                <span className={classes.starSign}> *</span>
-            </div>
             <div className={classes.nameGroup}>
                 <div className={classes.lastNameInput}>
+                    <img src={nameInput} alt="name" className={classes.inputImg} />
                     <input
                         placeholder="姓氏"
                         type="text"
@@ -117,6 +125,7 @@ function RegisterMainFrame() {
                     />
                 </div>
                 <div className={classes.firstNameInput}>
+                    <img src={nameInput} alt="name" className={classes.inputImg} />
                     <input
                         placeholder="名字"
                         type="text"
@@ -124,26 +133,24 @@ function RegisterMainFrame() {
                     />
                 </div>
             </div>
-            <div className={classes.label}>
-                <span>帳號</span>
-                <span className={classes.starSign}> *</span>
-                <span className={classes.errorMessage}>{accountError}</span>
-            </div>
+            <div className={classes.errorMessage}>{accountError}</div>
             <div className={classes.inputGroup}>
+                <img src={mail} className={classes.inputImg} alt="信箱" />
                 <input
-                    placeholder="帳號"
-                    type="text"
+                    placeholder="信箱"
+                    type="email"
                     onChange={accountChangeHandler}
                 />
             </div>
-            <div className={classes.label}>
-                <span>密碼</span>
-                <span className={classes.starSign}> *</span>
-                <span className={classes.errorMessage}>{passwordError}</span>
-            </div>
-            <div className={classes.inputGroup2}>
+            <div className={classes.errorMessage}>{passwordError}</div>
+            <div className={classes.inputGroup}>
+                <img
+                    src={passwordImg}
+                    className={classes.inputImg}
+                    alt="密碼"
+                />
                 <input
-                    placeholder="請輸入8位以上由字母和數字組成的密碼"
+                    placeholder="密碼請由8位以上字母和數字組成"
                     type={showPasswordState ? "text" : "password"}
                     onChange={passwordChangeHandler}
                 />
@@ -154,8 +161,13 @@ function RegisterMainFrame() {
                     alt="隱藏密碼"
                 />
             </div>
-            <div className={classes.errorMessage2}>{checkPasswordError}</div>
+            <div className={classes.errorMessage}>{checkPasswordError}</div>
             <div className={classes.inputGroup}>
+                <img
+                    src={checkPasswordImg}
+                    className={classes.inputImg}
+                    alt="確認密碼"
+                />
                 <input
                     placeholder="請再次輸入密碼"
                     type={showPasswordState2 ? "text" : "password"}

@@ -5,28 +5,28 @@
 }
 
 .formContainer {
-    width: 80%;
-    max-width: 600px;
+    width: 50%;
+    max-width: 350px;
 }
 
 /* for account */
 .inputGroup {
-    margin-bottom: 25px;
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
+    margin-bottom: 40px;
+    background-color: transparent;
     display: flex;
     align-items: center;
+    border-bottom: 3px solid #4d3348;
+    padding: 2px 0px;
 }
 
 /* for password */
 .inputGroup2 { 
     margin-bottom: 6px;
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
+    background-color: transparent;
     display: flex;
     align-items: center;
+    border-bottom: 3px solid #4d3348;
+    padding: 2px 0px;
 }
 
 .inputImg {
@@ -44,12 +44,12 @@
 
 .inputGroup input, .inputGroup2 input {
     flex: 1;
-    width: 80%;
-    max-width: 600px;
-    padding: 10px;
+    width: 70%;
+    max-width: 350px;
+    padding: 0px 5px;
     border: none;
     outline: none;
-    background-color: #f2f3f5;
+    background-color: transparent;
     font-size: 15px;
 }
 
@@ -59,7 +59,6 @@
 
 .error {
     height: 14px;
-    margin-left: 15px;
     color: red;
 }
 
@@ -67,15 +66,18 @@
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #ccc;
+    background-color: #a8a7a7;
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 16px;
     color: #fff;
     cursor: not-allowed;
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
 }
 
 .loginButton:enabled {
-    background: linear-gradient(to right, #8195e6 0%, #c861d5 100%);;
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
     cursor: pointer
 }

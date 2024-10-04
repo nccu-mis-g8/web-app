@@ -1,11 +1,6 @@
 ﻿.formContainer {
-    width: 85%;
-    max-width: 550px;
-}
-
-.label {
-    margin-left: 15px;
-    margin-bottom: 10px;
+    width: 50%;
+    max-width: 350px;
 }
 
 .starSign {
@@ -14,93 +9,84 @@
 
 .nameGroup {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .lastNameInput {
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
+    padding: 5px 3px;
+    background-color: transparent;
+    border-bottom: 3px solid #4d3348;
     display: flex;
     align-items: center;
-    margin-right: 5px;
+    margin-right: 35px;
     width: 50%;
 }
 
 .firstNameInput {
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
+    padding: 5px 3px;
+    background-color: transparent;
+    border-bottom: 3px solid #4d3348;
     display: flex;
+    align-items: center;
     width: 50%;
 }
 
 /* for general input group */
 .inputGroup {
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-/* for password input group */
-.inputGroup2 {
-    border-radius: 25px;
-    padding: 5px 10px;
-    background-color: #f2f3f5;
+    padding: 5px 3px;
+    background-color: transparent;
+    border-bottom: 3px solid #4d3348;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.lastNameInput input, .firstNameInput input, .inputGroup input, .inputGroup2 input {
-    padding: 10px;
+.lastNameInput input, .firstNameInput input, .inputGroup input{
     border: none;
     outline: none;
-    background-color: #f2f3f5;
+    background-color: transparent;
     font-size: 15px;
     width: 100%;
+    padding: 0px 5px;
 }
 
 /* for password */
 .errorMessage {
-    display: inline-block;
-    margin-left: 15px;
     color: red;
-    font-size: 15px;
-}
-
-/* for check password */
-.errorMessage2 {
-    height: 20px;
-    margin-left: 15px;
+    margin-top: 15px;
     margin-bottom: 5px;
-    color: red;
     font-size: 15px;
+    height: 15px;
 }
 
 .eyeIcon {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
+    width: 21px;
+    height: 21px;
+    margin-right: 3px;
     cursor: pointer;
+}
+
+.inputImg {
+    width: 24px;
+    height: 24px;
 }
 
 .loginButton {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
-    background-color: #ccc;
+    margin-top: 25px;
+    background-color: #a8a7a7;
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 16px;
     color: #fff;
     cursor: not-allowed;
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
 }
 
 .loginButton:enabled {
-    background: linear-gradient(to right, #8195e6 0%, #c861d5 100%);;
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
     cursor: pointer
 }
