@@ -7,6 +7,8 @@ import UserInfo from "./routes/UserInfo";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Upload from "./routes/Upload";
+import ForgetPassword from "./routes/ForgetPassword";
+import NavigationBar from "./components/NavigationBar";
 
 
 
@@ -16,6 +18,8 @@ const router = createBrowserRouter([
     { path: "/upload", element: <Upload /> },
     { path: "/register", element: <Register /> },
     { path:"/user_info", element: <UserInfo /> },
+    { path:"/forget_password", element: <ForgetPassword /> },
+    { path: "/test", element: <NavigationBar />}
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
