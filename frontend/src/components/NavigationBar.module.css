@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
-    width: 10%;
-    max-width: 120px;
+    max-width: 130px;
+    min-width: 115px;
     background: linear-gradient(to bottom, #503958, #82678b);
     border-radius: 30px;
 }
@@ -28,7 +28,7 @@
 }
 
 .logout {
-    margin-top: 60px;
+    margin-top: 80px;
     margin-bottom: 30px;
     margin-right: 7px;
     width: 65px;
