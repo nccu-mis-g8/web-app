@@ -1,20 +1,26 @@
-﻿import classes from "./ContactPerson.module.css";
-import bot_avatar from "../../images/bot_avatar.png";
+﻿import def_avatar from "../../images/default_avatar.png";
+import classes from "./ContactPerson.module.css";
 
-function ContactPerson({ isSelected, onClick }) {
+function ContactPerson({ name, personality, isSelected, onClick }) {
     return (
-        <li
+        <div
             className={`${classes.container} ${
-                isSelected ? classes.selected : ""
+                isSelected ? classes.isSelected : ""
             }`}
             onClick={onClick}
         >
-            <img src={bot_avatar} className={classes.avatar} alt="" />
-            <div>
-                <div className={classes.name}>名字</div>
-                <div className={classes.content}>內容內容內容</div>
+            <img
+                src={def_avatar}
+                alt="預設平台頭像"
+                className={classes.avatar}
+            />
+            <div className={classes.content}>
+                <div className={classes.name}>姓名： {name}</div>
+                <div className={classes.personality}>
+                    個性留言： {personality}
+                </div>
             </div>
-        </li>
+        </div>
     );
 }
 
