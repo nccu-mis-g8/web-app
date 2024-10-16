@@ -1,17 +1,18 @@
 ﻿import NavigationBar from "../components/NavigationBar";
-import ContactList from "../components/chat/ContactList";
 import MessageList from "../components/chat/MessageList";
 import classes from "./ChatRoom.module.css";
 
-function chatRoom() {
+function ChatRoom() {
     return (
         <>
             <div className={classes.container}>
+                <div className={classes.barContainer}>
                     <NavigationBar />
-                    <MessageList />
+                </div>
+                <MessageList />
             </div>
         </>
     );
 }
 
-export default chatRoom;
+export default ChatRoom;
