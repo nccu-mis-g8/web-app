@@ -1,0 +1,11 @@
+﻿.container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ac72a1, #151634);
+}
+
+.barContainer {
+    margin-left: 4%;
+    margin-right: 4%;
+}
