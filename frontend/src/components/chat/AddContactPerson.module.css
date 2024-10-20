@@ -17,6 +17,10 @@
 }
 
 .content {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
     font-weight: bold;
     font-size: 20px;
     height: 160px;
