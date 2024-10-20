@@ -13,22 +13,31 @@
     width: 70px;
     height: 70px;
     margin-top: 30px;
-    margin-bottom: 5px;
     cursor: pointer;
     /* border-radius: 50%; */
     object-fit: cover;
 }
 
+.userInfo {
+    color: white;
+    font-size: 14px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 5px;
+}
+
 .icon {
     width: 80px;
     height: 80px;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 5px;
     cursor: pointer;
 }
 
 .logout {
-    margin-top: 80px;
+    margin-top: 65px;
     margin-bottom: 30px;
     margin-right: 7px;
     width: 65px;
@@ -56,4 +65,23 @@
     margin-right: 10px;
     background-color: blanchedalmond;
     cursor: pointer;
+}
+
+.iconContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emptyIndicator {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+}
+
+.activeIndicator {
+    width: 15px;
+    height: 15px;
+    background-color: #478a96;
+    border-radius: 50%;
 }
