@@ -72,8 +72,9 @@
     font-size: 16px;
     color: #fff;
     cursor: not-allowed;
-    font-family: "Hanuman", serif;
-    font-weight: 900;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
     font-style: normal;
 }
 
