@@ -4,6 +4,7 @@ import sendButton from "../../images/sendButton.png";
 import add_item from "../../images/add_item.png";
 import send_photo from "../../images/send_photo.png";
 import camera from "../../images/camera.png";
+import stickers from "../../images/stickers.png";
 
 function MessageInput({ onSendMessage }) {
     const [text, setText] = useState("");
@@ -55,9 +56,21 @@ function MessageInput({ onSendMessage }) {
             <div className={classes.outerContainer}>
                 <div className={classes.messageInputWrapper}>
                     <div className={classes.gadgetContainer}>
-                        <img src={add_item} alt="更多" className={classes.gadget} />
-                        <img src={send_photo} alt="傳送照片" className={classes.gadget} />
-                        <img src={camera} alt="拍照" className={classes.gadget} />
+                        <img
+                            src={add_item}
+                            alt="更多"
+                            className={classes.gadget}
+                        />
+                        <img
+                            src={send_photo}
+                            alt="傳送照片"
+                            className={classes.gadget}
+                        />
+                        <img
+                            src={camera}
+                            alt="拍照"
+                            className={classes.gadget}
+                        />
                     </div>
                     <div
                         className={classes.textareaContainer}
@@ -84,6 +97,11 @@ function MessageInput({ onSendMessage }) {
                             height="35px"
                         />
                     </button>
+                    <img
+                        src={stickers}
+                        alt="貼圖"
+                        className={classes.gadget2}
+                    />
                 </div>
             </div>
         </>
