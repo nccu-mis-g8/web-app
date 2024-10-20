@@ -1,0 +1,139 @@
+﻿.container {
+    background-color: white;
+    width: 60%;
+    border-radius: 15px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 2px solid black;
+}
+
+.closeImg {
+    width: 60px;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.inputFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputWrapper {
+    margin-top: 60px;
+    width: 80%;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.name {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+}
+
+.starSign {
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.colon {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.colon2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.nameInput {
+    font-style: normal;
+    font-size: 25px;
+    width: 50%;
+    border: none;
+    border-bottom: 3px solid black;
+    outline: none;
+    padding: 5px;
+}
+
+.avatar {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+}
+
+.avatarInput {
+    display: none;
+}
+
+.actualAvatarInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
+    width: 50%;
+    padding: 5px;
+}
+
+.fileName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65%;
+}
+
+.avatarBtn {
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 12px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.createBtn {
+    width: 40%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: #a8a7a7;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    cursor: not-allowed;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.createBtn:enabled {
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
+    cursor: pointer;
+}
