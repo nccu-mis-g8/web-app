@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import ChatRoomHeader from "./ChatRoomHeader";
 import UserMessage from "./UserMessage";
@@ -7,14 +7,20 @@ import ChooseResponse from "./ChooseResponse";
 import MessageInput from "./MessageInput";
 import classes from "./MessageList.module.css";
 
-function MessageList() {
+function MessageList({ dummy, dummyName }) {
     const [messages, setMessages] = useState([]);
+    const [pageSize, setPageSize] = useState(false);
+
+    useEffect(() => {
+        // 當組件首次加載時觸發淡入效果
+        setPageSize(dummy);
+    }, [dummy]);
 
     const { id } = useParams();
     const location = useLocation();
     const { person } = location.state || {};
 
-    const name = person ? person.name : "未選擇聯絡人";
+    const name = person ? person.name : dummyName;
 
     async function sendMessageHandler(userMessage) {
         setMessages([...messages, { type: "user", text: userMessage }]);
@@ -26,7 +32,7 @@ function MessageList() {
 
     return (
         <>
-            <div className={classes.outerContainer}>
+            <div className={pageSize ? classes.outerContainerDummy : classes.outerContainer}>
                 <ChatRoomHeader name={name} />
                 <div className={classes.listContainer}>
                     {messages.map((message, index) =>
