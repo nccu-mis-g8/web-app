@@ -74,7 +74,7 @@ function RegisterMainFrame() {
         }
 
         if (password !== checkPassword) {
-            setCheckPasswordError("密碼不一致");
+            setCheckPasswordError("二次密碼與密碼不一致");
             return
         }
 
@@ -180,7 +180,7 @@ function RegisterMainFrame() {
                     alt="隱藏密碼"
                 />
             </div>
-            <button className={classes.loginButton} disabled={!isButtonEnabled}>
+            <button className={classes.registerButton} disabled={!isButtonEnabled}>
                 送出
             </button>
         </Form>
