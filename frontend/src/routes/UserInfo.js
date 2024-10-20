@@ -5,12 +5,10 @@ import classes from "./UserInfo.module.css";
 function UserInfo() {
     return (
         <div className={classes.container}>
-            <div className={classes.left}>
+            <div className={classes.barContainer}>
                 <NavigationBar />
             </div>
-            <div className={classes.right}>
-                <UserInfoAvatar />
-            </div>
+            <UserInfoAvatar />
         </div>
     );
 }
