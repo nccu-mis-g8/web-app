@@ -1,7 +1,6 @@
 ﻿.outerContainer {
-    border-top: 1px solid #e0e0e0;
+    border-radius: 0px 0px 10px 10px;
     background-color: white;
-    margin-top: 10px;
 }
 
 .messageInputWrapper {
@@ -11,16 +10,13 @@
     padding-top: 10px;
     padding-bottom: 5px;
     margin-top: 10px;
-    margin-left: 3%;
-    margin-right: 3%;
 }
 
 .textareaContainer {
     position: relative;
-    border-radius: 25px;
-    border: 1px solid #dcdcdcf5;
+    border-radius: 10px;
     padding: 5px 15px;
-    background-color: #ebebeb;
+    background-color: #d9d9d9;
     display: flex;
     flex-grow: 1; /*使容器隨著螢幕寬度變化*/
     align-items: center;
@@ -32,7 +28,7 @@
     border: none;
     outline: none;
     resize: none;
-    background-color: #ebebeb;
+    background-color: #d9d9d9;
     font-size: 16px;
     color: #626060;
     line-height: 1.5;
@@ -40,15 +36,36 @@
     max-height: 140px;
 }
 
-.customTextarea::placeholder {
+/* .customTextarea::placeholder {
     color: #a7a7a7;
-}
+} */
 
 .sendButton {
     background: transparent;
-    margin-left: 15px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     border: none;
     cursor: pointer;
     display: flex;
+}
+
+.gadgetContainer {
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.gadget {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.gadget2 {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    cursor: pointer;
 }

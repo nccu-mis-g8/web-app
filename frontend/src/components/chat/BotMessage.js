@@ -1,10 +1,10 @@
 ﻿import classes from "./BotMessage.module.css"
-import bot_avatar from "../../images/bot_avatar.png";
+import logo from "../../images/logo.png";
 
 function BotMessage({ content }) {
     return (
         <div className={classes.messageContainer}>
-            <img src={bot_avatar} className={classes.avatar} alt=""/>
+            <img src={logo} className={classes.avatar} alt=""/>
             <div className={classes.messageBubble}>{content}</div>
         </div>
     );

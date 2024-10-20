@@ -1,18 +1,18 @@
 ﻿import NavigationBar from "../components/NavigationBar";
-import MessageList from "../components/chat/MessageList";
-import classes from "./ChatRoom.module.css";
+import SelectChatMainFrame from "../components/chat/SelectChatMainFrame";
+import classes from "./SelectChat.module.css";
 
-function ChatRoom() {
+function SelectChat() {
     return (
         <>
             <div className={classes.container}>
                 <div className={classes.barContainer}>
                     <NavigationBar />
                 </div>
-                <MessageList />
+                <SelectChatMainFrame />
             </div>
         </>
     );
 }
 
-export default ChatRoom;
+export default SelectChat;

@@ -7,19 +7,6 @@
     padding: 15px;
     width: 18%;
     cursor: pointer;
-    transition: outline 0.3s ease, transform 0.1s ease;
-}
-
-.container:hover {
-    transform: scale(0.98);
-}
-
-.container:active {
-    transform: scale(0.94);
-}
-
-.isSelected {
-    outline: 10px solid #024685;
 }
 
 .avatar {
@@ -30,18 +17,11 @@
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.name {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
     font-weight: bold;
     font-size: 20px;
-}
-
-.personality {
-    font-weight: bold;
-    font-size: 20px;
-    height: 130px;
+    height: 160px;
 }

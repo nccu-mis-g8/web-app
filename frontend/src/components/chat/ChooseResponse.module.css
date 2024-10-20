@@ -1,0 +1,44 @@
+﻿.responseContainer {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: white;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.response {
+    width: 35%;
+    background-color: #ddd7d7;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.responseHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+}
+
+.responseTitle {
+    margin-left: 15px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.content {
+    font-size: 20px;
+    font-weight: bold;
+}

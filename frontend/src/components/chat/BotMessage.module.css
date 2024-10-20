@@ -1,22 +1,39 @@
 ﻿.messageContainer {
+    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 15px;
+    align-items: flex-start;
+    position: relative;
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     margin-right: 10px;
-    background-color: rgb(217, 217, 217);;
+    background-color: rgb(217, 217, 217);
+    margin-top: 15px;
 }
 
 .messageBubble {
+    margin-left: 40px;
     max-width: 60%;
-    background-color: white;
-    border: 1px solid #6f81e457;
-    padding: 10px;
-    border-radius: 20px;
+    background: linear-gradient(to right, #ab8eae, #c596c9, #cbaacf);
     border-top-left-radius: 0px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.messageBubble::after {
+    content: "";
+    position: absolute;
+    top: 90%;
+    left: 72px;
+    border-width: 15px 0 10px 50px;
+    border-style: solid;
+    border-color: #ab8eae transparent transparent transparent;
+    transform: translateY(-160%) rotate(-20deg);
 }

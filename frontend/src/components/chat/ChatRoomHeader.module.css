@@ -1,0 +1,46 @@
+﻿.header {
+    background: white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 25px;
+}
+
+.goBack {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.share {
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+}
+
+.question {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

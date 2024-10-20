@@ -1,14 +1,31 @@
 ﻿.messageContainer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-right: 60px;
+    position: relative;
 }
 
 .messageBubble {
     max-width: 60%;
-    background-color: #789de5;
+    background: linear-gradient(to right, #bababb, #5a5f79);
     padding: 10px;
-    border-radius: 25px;
-    border-top-right-radius: 0px;
-    color: white;
+    border-radius: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.messageBubble::after {
+    content: "";
+    position: absolute;
+    top: 95%;
+    right: -57px;
+    border-width: 10px 0 10px 60px;
+    border-style: solid;
+    border-color: transparent transparent transparent #5a5f79;
+    transform: translateY(-90%) rotate(10deg);
+    z-index: 1;
 }

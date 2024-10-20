@@ -8,18 +8,20 @@ import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Upload from "./routes/Upload";
 import ForgetPassword from "./routes/ForgetPassword";
-import NavigationBar from "./components/NavigationBar";
+import SelectChat from "./routes/SelectChat";
+import classes from "./index.css";
 
 
 
 const router = createBrowserRouter([
-    { path: "/", element: <PrivateRoute element={<ChatRoom />} /> },
+    { path: "/", element: <PrivateRoute element={<SelectChat />} /> },
+    { path: "/message/:id", element: <PrivateRoute element={<ChatRoom />} /> },
     { path: "/login", element: <Login /> },
     { path: "/upload", element: <Upload /> },
     { path: "/register", element: <Register /> },
     { path:"/user_info", element: <UserInfo /> },
     { path:"/forget_password", element: <ForgetPassword /> },
-    { path: "/test", element: <NavigationBar />}
+    // { path: "/test", element: <SelectChat />}
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
