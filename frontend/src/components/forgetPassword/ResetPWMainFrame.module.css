@@ -1,0 +1,65 @@
+﻿.outerContainer {
+    width: 50%;
+    max-width: 350px;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border-bottom: 3px solid #4d3348;
+    padding: 2px 0px;
+}
+
+.inputContainer input {
+    flex: 1;
+    width: 70%;
+    max-width: 350px;
+    padding: 0px 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.inputImg {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+.eyeIcon {
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.error {
+    height: 14px;
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #a8a7a7;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    cursor: not-allowed;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.button:enabled {
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
+    cursor: pointer
+}
