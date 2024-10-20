@@ -9,6 +9,40 @@
     border-radius: 15px;
     border: 3px solid white;
     margin-right: 4%;
+    position: relative;
+}
+
+.outerContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.dummy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;  
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 
 .header {
@@ -20,10 +54,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
+    z-index: 10;
 }
 
 .title {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
     font-weight: bold;
+    font-style: normal;
     font-size: 30px;
     margin-left: 35px;
 }
@@ -41,6 +79,7 @@
     align-items: center;
     justify-content: center;
     gap: 5%;
+    z-index: 10;
 }
 
 .button {
@@ -53,11 +92,29 @@
     font-size: 16px;
     color: #fff;
     cursor: not-allowed;
-    font-weight: 900;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
     font-style: normal;
+    z-index: 10;
 }
 
 .button:enabled {
     background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
     cursor: pointer
+}
+
+/* modal 相關 */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
