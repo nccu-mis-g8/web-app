@@ -1,0 +1,131 @@
+﻿.outerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    min-height: 600px;
+    width: 95%;
+    background: black;
+    border-radius: 15px;
+    border: 3px solid white;
+    margin-right: 4%;
+    position: relative;
+    overflow: hidden;
+}
+
+.outerContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 65px rgba(255, 255, 255, 0.5); /* 白色霧霧的內部陰影 */
+    pointer-events: none;
+}
+
+/* 動畫用 */
+.outerContainerDummy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    min-height: 600px;
+    background: black;
+    border-radius: 15px;
+    margin-right: 4%;
+    position: relative;
+    overflow: hidden;
+}
+
+.outerContainerDummy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 65px rgba(255, 255, 255, 0.5); /* 白色霧霧的內部陰影 */
+    pointer-events: none;
+}
+/* ---- */
+
+.header {
+    background-color: black;
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: 3px solid white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.goBack {
+    width: 25px;
+    height: 42px;
+    cursor: pointer;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.title {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 30px;
+    color: white;
+}
+
+.mainFrame {
+    width: 80%;
+}
+
+.navigationBtnContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+}
+
+.navigationBtn {
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-size: 25px;
+    font-style: normal;
+    cursor: pointer;
+    border-radius: 35px;
+    padding: 12px 35px;
+}
+
+.navigationBtnSelected {
+    color: white;
+    border: 2px solid white;
+}
+
+.navigationBtnNotSelected {
+    color: #757575;
+    border: 2px solid #757575;
+}
+
+.navigationBtnNotSelected:hover {
+    color: #b1afaf;
+    border: 2px solid #b1afaf;
+}
+
+/* modal 相關 */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(215, 209, 209, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
