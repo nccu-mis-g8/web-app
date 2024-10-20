@@ -1,7 +1,7 @@
 ﻿import { useState, useEffect } from "react";
 import default_avatar200 from "../../images/default_avatar200.png";
-import image from "../../images/image.png";
-import image_library from "../../images/image_library.png";
+import send_photo from "../../images/send_photo.png";
+import question from "../../images/question.png";
 import classes from "./UserInfoAvatar.module.css";
 import { getUserAvatar } from "../../utils/userInfoUtils";
 
@@ -12,10 +12,10 @@ function UserInfoMainFrame() {
     const [userAvatar, setUserAvatar] = useState(default_avatar200);
 
     const userId = localStorage.getItem("userId");
+    const email = localStorage.getItem("email");
     const lastName = localStorage.getItem("lastName");
     const firstName = localStorage.getItem("firstName");
     const name = lastName + firstName;
-    const account = localStorage.getItem("account");
 
     useEffect(() => {
         async function fetchUserAvatar() {
@@ -97,6 +97,14 @@ function UserInfoMainFrame() {
 
     return (
         <div className={classes.avatarContainer}>
+            <div className={classes.header}>
+                <div className={classes.title}>個人資料</div>
+                <img
+                    src={question}
+                    alt="更多資訊"
+                    className={classes.question}
+                />
+            </div>
             <div className={classes.avatarWrapper}>
                 <img src={userAvatar} alt="頭像" className={classes.avatar} />
                 <div className={classes.overlay} onClick={avatarClickHandler}>
@@ -113,7 +121,7 @@ function UserInfoMainFrame() {
                 {showOption && (
                     <div className={classes.avatarOptions}>
                         <div className={classes.buttonContainer}>
-                            <img src={image} alt="查看" />
+                            <img src={send_photo} alt="查看" />
                             <button
                                 className={classes.button}
                                 onClick={viewModalHandler}
@@ -122,7 +130,7 @@ function UserInfoMainFrame() {
                             </button>
                         </div>
                         <div className={classes.buttonContainer}>
-                            <img src={image_library} alt="更換" />
+                            <img src={send_photo} alt="更換" />
                             <button
                                 className={classes.button}
                                 onClick={changeAvatarHandler}
@@ -134,8 +142,11 @@ function UserInfoMainFrame() {
                 )}
             </div>
 
-            <div className={classes.name}>{name}</div>
-            <div className={classes.account}>{account}</div>
+            <div className={classes.nameContainer}>
+                <div className={classes.nameTitle}>姓名 :</div>
+                <div className={classes.name}>{name}</div>
+            </div>
+            <div className={classes.email}>{email}</div>
 
             {showModal && (
                 <div className={classes.modal} onClick={closeModalHandler}>

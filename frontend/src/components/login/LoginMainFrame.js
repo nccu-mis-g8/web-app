@@ -6,7 +6,7 @@ import openEye from "../../images/openEye.png";
 import closeEye from "../../images/closeEye.png";
 import classes from "./LoginMainFrame.module.css";
 
-function LoginMainFrame() {
+function LoginMainFrame({ onLoginSuccess }) {
     const [account, setAccount] = useState("");
     const [password, setPassword] = useState("");
     const [showPasswordState, setShowPasswordState] = useState(false);
@@ -50,20 +50,22 @@ function LoginMainFrame() {
 
                 // 儲存 Tokens 及必要資訊
                 console.log("登入成功");
+
+                onLoginSuccess();
+
                 const accessToken = responseData.access_token;
                 const refreshToken = responseData.refresh_token;
                 const userId = responseData.user_id;
                 const lastName = responseData.lastname;
                 const firstName = responseData.firstname;
-                const account = responseData.account;
+                const email = responseData.email;
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("lastName", lastName);
                 localStorage.setItem("firstName", firstName);
-                localStorage.setItem("account", account);
+                localStorage.setItem("email", email);
 
-                navigate("/"); // 重新導向到主畫面
             } else if (response.status === 401) {
                 const responseData = await response.json();
                 const error = responseData.message;

@@ -1,0 +1,85 @@
+﻿.outerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.leftImg {
+    width: 32px;
+    height: 50px;
+    margin-right: 75px;
+    cursor: pointer;
+}
+
+.leftImg:hover {
+    transform: scale(1.1);
+}
+
+.leftImg:active {
+    transform: scale(0.9);
+}
+
+.rightImg {
+    width: 32px;
+    height: 50px;
+    margin-left: 75px;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.rightImg:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+.rightImg:active {
+    transform: rotate(180deg) scale(0.9);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+}
+
+.name {
+    font-size: 20px;
+}
+
+.training {
+    color: white;
+    background: #d8a6a6;
+    padding: 7px 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.finishTraining {
+    color: white;
+    background: #bbd8a6;
+    padding: 7px 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.blank {
+    height: 16px;
+}
+
+.finishHint {
+    color: #ba8db2;
+    font-size: 16px;
+}
