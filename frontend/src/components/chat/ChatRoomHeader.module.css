@@ -1,6 +1,8 @@
 ﻿.header {
     background: white;
     border-radius: 10px 10px 0px 0px;
+    position: relative;
+    overflow: visible;
 }
 
 .container {
@@ -43,4 +45,37 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 80px;
+    right: -15px;
+    transform: translateX(-50%);
+    background-color:  #c6afc2;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    animation: slideUpFade 2s ease forwards; /* 加入動畫 */
+
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px); /* 從圖片下方開始 */
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, 0); /* 到達圖片上方 */
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px); /* 繼續向上並消失 */
+    }
 }
