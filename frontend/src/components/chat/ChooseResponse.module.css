@@ -19,6 +19,17 @@
     background-color: #ddd7d7;
     border-radius: 10px;
     padding: 15px 20px;
+    transition: outline 0.3s ease, transform 0.1s ease;
+    user-select: none;
+    cursor: pointer;
+}
+
+.response:hover {
+    transform: scale(1.05);
+}
+
+.response:active {
+    transform: scale(0.98);
 }
 
 .responseHeader {
@@ -30,6 +41,8 @@
 .avatar {
     width: 65px;
     height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .responseTitle {
