@@ -6,6 +6,7 @@
     border-radius: 15px;
     padding: 15px;
     width: 18%;
+    user-select: none;
     cursor: pointer;
 }
 
