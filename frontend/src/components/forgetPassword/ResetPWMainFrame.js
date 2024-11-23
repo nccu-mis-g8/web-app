@@ -72,7 +72,7 @@ function ResetPWMainFrame() {
 
         try {
             const response = await fetch(
-                "http://127.0.0.1:5001/auth/resetPassword",
+                "https://nccu-group-8.work/auth/resetPassword",
                 {
                     method: "POST",
                     headers: {
