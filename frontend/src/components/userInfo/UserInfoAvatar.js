@@ -3,7 +3,6 @@ import default_avatar200 from "../../images/default_avatar200.png";
 import send_photo from "../../images/send_photo.png";
 import question from "../../images/question.png";
 import classes from "./UserInfoAvatar.module.css";
-import { getUserAvatar } from "../../utils/userInfoUtils";
 
 function UserInfoMainFrame() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -18,16 +17,14 @@ function UserInfoMainFrame() {
     const name = lastName + firstName;
 
     useEffect(() => {
-        async function fetchUserAvatar() {
-            const avatarUrl = await getUserAvatar();
-            if (avatarUrl) {
-                setUserAvatar(avatarUrl);
-            } else {
-                setUserAvatar(default_avatar200);
-            }
+        // Check if there's a user avatar in localStorage
+        const storedAvatar = localStorage.getItem("photo");
+        if (storedAvatar) {
+            setUserAvatar(storedAvatar);
+        } else {
+            setUserAvatar(default_avatar200); // Use default avatar if none is found
         }
-        fetchUserAvatar();
-    }, [])
+    }, []);
 
     function avatarClickHandler() {
         setShowOption(!showOption);
@@ -54,16 +51,18 @@ function UserInfoMainFrame() {
         }
         setSelectedFile(file);
 
+        const accessToken = localStorage.getItem("accessToken")
         const formData = new FormData();
-        const userInfo = JSON.stringify({ user_Id: userId });
-        formData.append("user_info", userInfo);
         formData.append("file", file);
 
         try {
             const response = await fetch(
-                "http://127.0.0.1:5001/userinfo/user/upload_photo",
+                "https://nccu-group-8.work/userinfo/user/upload_photo",
                 {
                     method: "POST",
+                    headers: {
+                        "Authorization": "Bearer " + accessToken
+                    },
                     body: formData,
                 }
             );
@@ -73,12 +72,7 @@ function UserInfoMainFrame() {
             if (response.status === 200) {
                 console.log("上傳成功");
                 alert("上傳成功!");
-                const responseUrl = await getUserAvatar();
-                if(responseUrl) {
-                    setUserAvatar(responseUrl);
-                } else {
-                    alert("重載大頭貼時發生錯誤，請稍後再試");
-                }
+
             } else if (response.status === 400) {
                 const responseData = await response.json();
                 const error = responseData.message;
@@ -155,7 +149,7 @@ function UserInfoMainFrame() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <img
-                            src={default_avatar200}
+                            src={userAvatar}
                             alt="頭像"
                             className={classes.largeAvatar}
                         />
