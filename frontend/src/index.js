@@ -12,21 +12,29 @@ import ForgetPassword from "./routes/ForgetPassword";
 import ResetPassword from "./routes/ResetPassword";
 import SelectChat from "./routes/SelectChat";
 import Notepad from "./routes/Notepad";
+import Event from "./routes/Event";
+import EventContent from "./routes/EventContent";
+import CreateEvent from "./routes/CreateEvent";
+import { loader as modelInfoLoader } from "./routes/SelectChat";
+import { loader as uploadInfoLoader } from "./routes/SelectUpload";
 import classes from "./index.css";
 
 
 
 const router = createBrowserRouter([
-    { path: "/", element: <PrivateRoute element={<SelectChat />} /> },
+    { path: "/", element: <PrivateRoute element={<SelectChat />} />, loader: modelInfoLoader, },
     { path: "/message/:id", element: <PrivateRoute element={<ChatRoom />} /> },
     { path: "/login", element: <Login /> },
-    { path: "/upload", element: <SelectUpload /> },
+    { path: "/upload", element: <SelectUpload />, loader: uploadInfoLoader },
     { path: "/upload/:id", element: <TrainingPage /> },
     { path: "/register", element: <Register /> },
     { path:"/user_info", element: <UserInfo /> },
     { path:"/forget_password", element: <ForgetPassword /> },
     { path:"/forget_password/reset_password", element: <ResetPassword /> },
     { path:"/notepad", element: <Notepad /> },
+    { path:"/notepad/event/:time", element: <Event/> },
+    { path:"/notepad/event/:time/:id", element: <EventContent/> },
+    { path:"/notepad/event/:time/createEvent", element: <CreateEvent />},
     // { path: "/test", element: <SelectChat />}
 ]);
 
