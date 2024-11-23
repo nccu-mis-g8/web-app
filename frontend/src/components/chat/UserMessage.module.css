@@ -8,7 +8,7 @@
 
 .messageBubble {
     max-width: 60%;
-    background: linear-gradient(to right, #bababb, #5a5f79);
+    background: linear-gradient(to right, #a7a8b0, #a3a8b9, #9ba2bd);
     padding: 10px;
     border-radius: 10px;
     color: black;
@@ -25,7 +25,7 @@
     right: -57px;
     border-width: 10px 0 10px 60px;
     border-style: solid;
-    border-color: transparent transparent transparent #5a5f79;
+    border-color: transparent transparent transparent #9ba2bd;
     transform: translateY(-90%) rotate(10deg);
     z-index: 1;
 }
