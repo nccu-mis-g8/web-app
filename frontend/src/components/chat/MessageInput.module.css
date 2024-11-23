@@ -1,6 +1,39 @@
 ﻿.outerContainer {
     border-radius: 0px 0px 10px 10px;
     background-color: white;
+    position: relative;
+}
+
+@keyframes jump {
+    0%,
+    100% {
+        transform: translateY(0); /* 初始位置 */
+    }
+    50% {
+        transform: translateY(-3px); /* 向上跳動 */
+    }
+}
+
+.loadingText {
+    position: absolute;
+    top: -40px;
+    left: 15px;
+    display: flex;
+    gap: 2px;
+    background-color: rgb(225, 224, 224);
+    padding: 3px 20px;
+    border-radius: 15px;
+
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.loadingChar {
+    display: inline-block;
+    animation: jump 1s infinite;
 }
 
 .messageInputWrapper {
@@ -21,7 +54,6 @@
     flex-grow: 1; /*使容器隨著螢幕寬度變化*/
     align-items: center;
 }
-
 
 .customTextarea {
     width: 100%;
@@ -52,7 +84,7 @@
 .gadgetContainer {
     display: flex;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
     margin-left: 13px;
     margin-right: 13px;
 }
