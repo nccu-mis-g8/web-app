@@ -11,7 +11,7 @@ function LogoutMenu({ cancelLogout }) {
             const access_token = localStorage.getItem("accessToken");
             
             const response = await fetch(
-                "http://127.0.0.1:5001/auth/logout",
+                "https://nccu-group-8.work/auth/logout",
                 {
                     method: "POST",
                     headers: {
