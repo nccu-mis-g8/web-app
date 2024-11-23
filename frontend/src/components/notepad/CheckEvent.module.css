@@ -1,0 +1,187 @@
+﻿.checkEventContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    min-height: 600px;
+    width: 95%;
+    background: black;
+    border-radius: 15px;
+    border: none;
+    margin-right: 4%;
+    position: relative;
+}
+
+.checkEventContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(184, 174, 119, 0.5);
+    border-radius: 11px;
+    pointer-events: none;
+}
+
+.header {
+    background-color: black;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 3px solid white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.goBack {
+    width: 25px;
+    height: 42px;
+    cursor: pointer;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.title {
+    color: white;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.mainContent {
+    background-image: url("../../images/notepadBackground.png");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 1;
+}
+
+.mainContent::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* 調整透明度的遮罩層 */
+    z-index: 2;
+  }
+
+.contentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    margin-top: 50px;
+}
+
+.contentTitle {
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 55px;
+    color: white;
+    margin-left: 15%;
+    user-select: none;
+}
+
+.contentTitle::after {
+    content: attr(data-text); /* 使用 data-text 屬性來顯示文字 */
+    position: absolute;
+    top: 0;
+    left: 15%;
+    color: #8f1e91;
+    z-index: -1;
+    transform: translate(7px, 3px); /* 控制陰影偏移距離 */
+    filter: blur(1px); /* 模糊效果 */
+    font-weight: bold;
+}
+
+.createEventBtn {
+    width: 65px;
+    height: 65px;
+    margin-right: 15%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.createEventBtn:hover {
+    transform: scale(1.1);
+}
+
+.eventList {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    z-index: 10;
+}
+
+.leftImg,
+.rightImg {
+    position: absolute;
+    top: 50%; /* 垂直居中 */
+    width: 32px;
+    height: 50px;
+    cursor: pointer;
+    opacity: 0; /* 初始為隱藏狀態 */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.leftImg {
+    left: 6%;
+}
+
+.rightImg {
+    right: 6%;
+    transform: rotate(180deg);
+}
+
+.leftImg:hover {
+    transform: scale(1.1);
+    opacity: 1; /* 懸停時顯示 */
+}
+
+.rightImg:hover {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 1; /* 懸停時顯示 */
+}
+
+.leftImg:active {
+    transform: scale(0.9);
+}
+
+.rightImg:active {
+    transform: scale(0.9) rotate(180deg);
+}
+
+.leftImgVisible,
+.rightImgVisible {
+    opacity: 1; /* 當需要顯示時設置為可見 */
+}
+
+.noEvent {
+    position: relative;
+    z-index: 5;
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 115px;
+    color: white;
+    font-size: 50px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
