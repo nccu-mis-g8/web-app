@@ -1,28 +1,50 @@
-﻿export async function localUpload(file, masterName) {
-    const userId = localStorage.getItem("userId");
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("userId", userId);
-    formData.append("master_name", masterName);
-
-    console.log(file);
-    console.log(masterName)
-    console.log(userId);
-
-    try {
-        const response = await fetch("http://127.0.0.1:5000/upload/", {
+﻿export async function uploadTxt(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/utils/user/upload_txt_file",
+        {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + accessToken,
+            },
             body: formData,
-        });
-
-        if (response.ok) {
-            alert("File uploaded successfully");
-        } else {
-            alert("Failed to upload file");
         }
+    );
 
-    } catch (error) {
-        console.error("An error occurred while uploading the file", error);
-    }
+    return response;
+}
+
+export async function uploadCsv(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/utils/user/upload_csv_file",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + accessToken,
+            },
+            body: formData,
+        }
+    );
+
+    return response;
+}
+
+export async function startTraining(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/finetune/train_model",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + accessToken,
+            },
+            body: formData,
+        }
+    );
+
+    return response;
 }
