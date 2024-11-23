@@ -13,12 +13,13 @@
     margin-right: 10px;
     background-color: rgb(217, 217, 217);
     margin-top: 15px;
+    object-fit: cover;
 }
 
 .messageBubble {
     margin-left: 40px;
     max-width: 60%;
-    background: linear-gradient(to right, #ab8eae, #c596c9, #cbaacf);
+    background: linear-gradient(to right, #d4daf2, #e0e4f5, #e8ebf2);
     border-top-left-radius: 0px;
     padding: 10px;
     border-radius: 10px;
@@ -34,6 +35,6 @@
     left: 72px;
     border-width: 15px 0 10px 50px;
     border-style: solid;
-    border-color: #ab8eae transparent transparent transparent;
+    border-color: #d4daf2 transparent transparent transparent;
     transform: translateY(-160%) rotate(-20deg);
 }

@@ -7,23 +7,24 @@ import upload from "../images/upload.png";
 import notebook from "../images/notebook.png";
 import logout from "../images/logout.png";
 import LogoutMenu from "./LogoutMenu";
-import { getUserAvatar } from "../utils/userInfoUtils";
 
 function NavigationBar() {
     const [showLogoutMenu, setShowLogoutMenu] = useState(false);
     const [userAvatar, setUserAvatar] = useState(bot_avatar);
+    const [hasPhoto, setHasPhoto] = useState(false);
+    localStorage.getItem("photo");
 
     useEffect(() => {
-        async function fetchUserAvatar() {
-            const avatarUrl = await getUserAvatar();
-            if (avatarUrl) {
-                setUserAvatar(avatarUrl);
-            } else {
-                setUserAvatar(bot_avatar);
-            }
+        // Check if there's a user avatar in localStorage
+        const storedAvatar = localStorage.getItem("photo");
+        if (storedAvatar) {
+            setUserAvatar(storedAvatar);
+            setHasPhoto(true)
+        } else {
+            setUserAvatar(bot_avatar); // Use default avatar if none is found
+            setHasPhoto(false);
         }
-        fetchUserAvatar();
-    }, [])
+    }, []);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -54,11 +55,12 @@ function NavigationBar() {
     
     const isInChatRoom = location.pathname === "/" || location.pathname.startsWith("/message/");
     const isInUpload = location.pathname === "/upload" || location.pathname.startsWith("/upload/");
+    const isInNotepad = location.pathname === "/notepad" || location.pathname.startsWith("/notepad/");
 
     return (
         <div className={classes.barContainer}>
             <div className={classes.iconContainer}>
-                <img src={userAvatar} className={classes.userIcon} alt="使用者資訊" onClick={redirectToUserInfo}/>
+                <img src={userAvatar} className={`${classes.userIcon} ${hasPhoto ? classes.userIconRadius : ''}`} alt="使用者資訊" onClick={redirectToUserInfo}/>
                 <div className={classes.userInfo}>個人資料</div>
                 <div className={location.pathname === "/user_info" ? classes.activeIndicator : classes.emptyIndicator}></div>
             </div>
@@ -72,7 +74,7 @@ function NavigationBar() {
             </div>
             <div className={classes.iconContainer}>
                 <img src={notebook} className={classes.icon} alt="記事本" onClick={redirectToNotepad} />
-                <div className={location.pathname === "/notepad" ? classes.activeIndicator : classes.emptyIndicator}></div>
+                <div className={isInNotepad ? classes.activeIndicator : classes.emptyIndicator}></div>
             </div>
             <img src={logout} className={classes.logout} alt="登出" onClick={toggleLogoutMenu}/>
             { showLogoutMenu && <LogoutMenu cancelLogout={cancelLogout} /> }

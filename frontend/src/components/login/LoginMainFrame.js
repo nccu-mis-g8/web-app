@@ -34,7 +34,7 @@ function LoginMainFrame({ onLoginSuccess }) {
         e.preventDefault(); // 阻止表單默認的提交行為
 
         try {
-            const response = await fetch("http://127.0.0.1:5001/auth/login", {
+            const response = await fetch("https://nccu-group-8.work/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function LoginMainFrame({ onLoginSuccess }) {
                 const responseData = await response.json();
 
                 // 儲存 Tokens 及必要資訊
-                console.log("登入成功");
+                // console.log("登入成功");
 
                 onLoginSuccess();
 
@@ -58,6 +58,7 @@ function LoginMainFrame({ onLoginSuccess }) {
                 const userId = responseData.user_id;
                 const lastName = responseData.lastname;
                 const firstName = responseData.firstname;
+                const photo = responseData.photo;
                 const email = responseData.email;
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
@@ -65,6 +66,7 @@ function LoginMainFrame({ onLoginSuccess }) {
                 localStorage.setItem("lastName", lastName);
                 localStorage.setItem("firstName", firstName);
                 localStorage.setItem("email", email);
+                localStorage.setItem("photo", photo);
 
             } else if (response.status === 401) {
                 const responseData = await response.json();

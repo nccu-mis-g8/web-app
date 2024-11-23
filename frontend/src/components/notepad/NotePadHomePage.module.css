@@ -1,0 +1,192 @@
+﻿.notePadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    min-height: 600px;
+    width: 95%;
+    background: black;
+    border-radius: 15px;
+    border: none;
+    margin-right: 4%;
+    position: relative;
+}
+
+.notePadContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(184, 174, 119, 0.5);
+    border-radius: 11px;
+    pointer-events: none;
+}
+
+.header {
+    background-color: black;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 3px solid white;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.title {
+    color: white;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 30px;
+    margin-left: 35px;
+}
+
+.mainContent {
+    background-image: url("../../images/notepadBackground.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.wavyLine {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 600px;
+    color: #f7f322;
+}
+
+/* --------------------for stick-------------------- */
+
+/* 往下長的棒子 */
+.stickDown {
+    stroke: #fffc55;
+    stroke-width: 2.5;
+    stroke-dasharray: 86;
+    stroke-dashoffset: 86; /* 從上方開始長 */
+    animation: growStickDown 1s forwards;
+    animation-delay: 2.5s;
+    transition: stroke 0.2s ease;
+}
+
+/* 往上長的棒子 */
+.stickUp {
+    stroke: #fffc55;
+    stroke-width: 2.5;
+    stroke-dasharray: 86;
+    stroke-dashoffset: -86; /* 從下方開始長 */
+    animation: growStickUp 1s forwards;
+    animation-delay: 2.5s;
+    transition: stroke 0.2s ease;
+}
+
+/* 往下長的動畫 */
+@keyframes growStickDown {
+    from {
+        stroke-dashoffset: 86; /* 起始於上方 */
+    }
+    to {
+        stroke-dashoffset: 0; /* 完整顯示 */
+    }
+}
+
+/* 往上長的動畫 */
+@keyframes growStickUp {
+    from {
+        stroke-dashoffset: -86; /* 起始於下方 */
+    }
+    to {
+        stroke-dashoffset: 0; /* 完整顯示 */
+    }
+}
+/* ------------------------------------------------- */
+
+.circle {
+    fill: #fffd7a;
+    opacity: 0; /* 初始為隱藏 */
+    animation: appearCircle 0.5s forwards;
+    animation-delay: 3.5s; /* 與棒子動畫同步 */
+    filter: drop-shadow(0 0 4px #cbc8c7);
+    transition: fill 0.3s ease;
+}
+
+/* 動畫：圓形的頭出現 */
+@keyframes appearCircle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hoverGroup {
+    transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.hoverGroup:hover line {
+    stroke: #ff9442;
+}
+
+.hoverGroup:hover circle {
+    fill: #ff9442;
+    cursor: pointer;
+}
+
+.animatedPath {
+    stroke-dasharray: 60, 600;
+    stroke-dashoffset: 0;
+    animation: moveAndExpand 2.5s ease forwards;
+    stroke: #fffc2f;
+    filter: drop-shadow(0 0 4px #fffc2f);
+}
+
+/* 定義動畫 */
+@keyframes moveAndExpand {
+    0% {
+        stroke-dasharray: 60, 600; /* 起始短線條 */
+        stroke-dashoffset: 0; /* 從起點開始 */
+    }
+    30% {
+        stroke-dasharray: 60, 600;
+        stroke-dashoffset: -260; /* 短線條移動到約 260 的位置 */
+    }
+    100% {
+        stroke-dasharray: 650, 0; /* 展開整條波浪線 */
+        stroke-dashoffset: 0;
+    }
+}
+
+.text {
+    font-family: "Hanuman", serif;
+    font-weight: 900;
+    font-style: normal;
+    fill: white;
+    user-select: none;
+    filter: drop-shadow(0 0 4px #a73e9a);
+    opacity: 0;
+    animation: textFadeIn 0.5s ease forwards;
+    animation-delay: 3.5s;
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

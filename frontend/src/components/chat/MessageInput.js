@@ -6,7 +6,7 @@ import send_photo from "../../images/send_photo.png";
 import camera from "../../images/camera.png";
 import stickers from "../../images/stickers.png";
 
-function MessageInput({ onSendMessage }) {
+function MessageInput({ onSendMessage, name, loadingHint, disabled }) {
     const [text, setText] = useState("");
 
     const textareaRef = useRef(null);
@@ -17,9 +17,11 @@ function MessageInput({ onSendMessage }) {
     }
 
     function keyDownHandler(e) {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault(); // 阻止默認行為 (也就是不要在textarea創建新行)
-            sendMessageHandler();
+        if (!disabled) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault(); // 阻止默認行為 (也就是不要在textarea創建新行)
+                sendMessageHandler();
+            }
         }
     }
 
@@ -51,9 +53,29 @@ function MessageInput({ onSendMessage }) {
         container.style.width = "auto";
     }, [text]);
 
+    const loadingText = " 正在輸入訊息...";
+
     return (
         <>
             <div className={classes.outerContainer}>
+                {loadingHint && (
+                    <div className={classes.loadingText}>
+                        <div>{name}</div>
+                        {loadingText.split("").map((char, index) => (
+                            <span
+                                key={index}
+                                className={classes.loadingChar}
+                                style={{
+                                    animationDelay: `${
+                                        (index % 2 === 0 ? index : -index) * 0.1
+                                    }s`,
+                                }} // 隨機延遲
+                            >
+                                {char}
+                            </span>
+                        ))}
+                    </div>
+                )}
                 <div className={classes.messageInputWrapper}>
                     <div className={classes.gadgetContainer}>
                         <img
@@ -89,6 +111,7 @@ function MessageInput({ onSendMessage }) {
                     <button
                         className={classes.sendButton}
                         onClick={sendMessageHandler}
+                        disabled={disabled}
                     >
                         <img
                             src={sendButton}

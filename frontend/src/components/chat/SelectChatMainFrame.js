@@ -3,23 +3,25 @@ import { useNavigate } from "react-router-dom";
 import question from "../../images/question.png";
 import ContactPerson from "./ContactPerson";
 import AddContactPerson from "./AddContactPerson";
+import CreateAndLink from "./CreateAndLink";
 import AddCPMainFrame from "./AddCPMainFrame";
+import EnterLink from "./EnterLink";
 import MessageList from "./MessageList";
 import classes from "./SelectChatMainFrame.module.css";
 
-function SelectChatMainFrame() {
+function SelectChatMainFrame({ modelInfo }) {
     const [selectedPerson, setSelectedPerson] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showLinkModal, setShowLinkModal] = useState(false);
     const [isFading, setIsFading] = useState(false);
     const [isNavigating, setIsNavigating] = useState(false);
+    
+    if (modelInfo.message === "此使用者沒有任何訓練的模型") {
+        modelInfo = [];
+    }
 
     const navigate = useNavigate();
-
-    const contactList = [
-        { id: 1, name: "平台", personality: "預設" },
-        { id: 2, name: "子安", personality: "測試" },
-        { id: 3, name: "ZK", personality: "測試2" },
-    ];
 
     function contactClickHandler(person) {
         setSelectedPerson(person);
@@ -49,6 +51,22 @@ function SelectChatMainFrame() {
         setShowModal(false);
     }
 
+    function viewCreateModalHandler() {
+        setShowCreateModal(true);
+    }
+
+    function closeCreateModalHandler() {
+        setShowCreateModal(false);
+    }
+
+    function viewLinkModalHandler() {
+        setShowLinkModal(true);
+    }
+
+    function closeLinkModalHandler() {
+        setShowLinkModal(false);
+    }
+
     return (
         <div className={classes.outerContainer}>
             {isNavigating && <div className={classes.dummy}>
@@ -63,16 +81,18 @@ function SelectChatMainFrame() {
                 />
             </div>
             <div className={`${classes.contactList} ${isFading ? classes["fade-out"] : classes["fade-in"]}`}>
-                {contactList.map((person, index) => (
+                {modelInfo.map((person, index) => (
                     <ContactPerson
                         key={index}
-                        name={person.name}
-                        personality={person.personality}
-                        isSelected={selectedPerson?.name === person.name}
+                        modelId={person.id}
+                        name={person.model_original_name}
+                        personality={person.anticipation}
+                        photo={person.modelphoto}
+                        isSelected={selectedPerson?.id === person.id}
                         onClick={() => contactClickHandler(person)}
                     />
                 ))}
-                {contactList.length < 4 && (
+                {modelInfo.length < 4 && (
                     <AddContactPerson onClick={viewModalHandler} />
                 )}
             </div>
@@ -83,12 +103,32 @@ function SelectChatMainFrame() {
             >
                 開始聊天
             </button>
-
+                
             {showModal && (
                 <div className={classes.modal} onClick={closeModalHandler}>
+                    <CreateAndLink
+                        onClick={(e) => e.stopPropagation()}
+                        closeModal={closeModalHandler}
+                        viewCreateModal={viewCreateModalHandler}
+                        viewLinkModal={viewLinkModalHandler}
+                    />
+                </div>
+            )}
+
+            {showLinkModal && (
+                <div className={classes.modal} onClick={closeLinkModalHandler}>
+                    <EnterLink
+                        onClick={(e) => e.stopPropagation()}
+                        onClickCloseBtn={closeLinkModalHandler}
+                    />
+                </div>
+            )}
+
+            {showCreateModal && (
+                <div className={classes.modal} onClick={closeCreateModalHandler}>
                     <AddCPMainFrame
                         onClick={(e) => e.stopPropagation()}
-                        onClickCloseBtn={closeModalHandler}
+                        onClickCloseBtn={closeCreateModalHandler}
                     />
                 </div>
             )}

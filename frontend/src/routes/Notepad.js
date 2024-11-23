@@ -1,4 +1,5 @@
 ﻿import NavigationBar from "../components/NavigationBar";
+import NotePadHomePage from "../components/notepad/NotePadHomePage";
 import classes from "./Notepad.module.css";
 
 function Notepad() {
@@ -8,7 +9,7 @@ function Notepad() {
                 <div className={classes.barContainer}>
                     <NavigationBar />
                 </div>
-                
+                <NotePadHomePage />
             </div>
         </>
     );

@@ -1,14 +1,20 @@
 ﻿.menuContainer {
     position: absolute;
-    bottom: 130px;
-    left: 120px;
+    bottom: 125px;
+    left: 135px;
     background: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px 10px 10px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 10000;
+
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 
@@ -19,29 +25,38 @@
 .cancelButton {
     margin: 5px 0;
     padding: 8px 16px;
-    background-color: #e4e4e4;
+    background-color: #d9d9d9;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 .cancelButton:hover {
-    background-color: #e8e8e8;
+    background-color: #bfbfbf;
 }
 
 
 .confirmButton {
     margin: 5px 0;
     padding: 8px 16px;
-    background-color: #789de5;
+    background-color: #ac72a1;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
+
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
 }
 
 .confirmButton:hover {
-    background-color: #839ac8;
+    background-color: #885b80;
 }
