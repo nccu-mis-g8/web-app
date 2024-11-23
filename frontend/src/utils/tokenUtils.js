@@ -8,15 +8,13 @@
 
     try {
         const response = await fetch(
-            "http://127.0.0.1:5001/auth/login/refresh",
+            "https://nccu-group-8.work/auth/refresh",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: "Bearer " + refreshToken,
                 },
-                body: JSON.stringify({
-                    refreshToken: "Bearer " + refreshToken,
-                }),
             }
         );
 
