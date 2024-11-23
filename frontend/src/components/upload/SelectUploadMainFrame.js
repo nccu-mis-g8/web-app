@@ -3,23 +3,25 @@ import { useNavigate } from "react-router-dom";
 import question from "../../images/question.png";
 import ContactPerson from "../chat/ContactPerson";
 import AddContactPerson from "../chat/AddContactPerson";
+import CreateAndLink from "../chat/CreateAndLink";
 import AddCPMainFrame from "../chat/AddCPMainFrame";
+import EnterLink from "../chat/EnterLink";
 import TrainingAndUpload from "./TrainingAndUpload";
 import classes from "./SelectUploadMainFrame.module.css";
 
-function SelectUploadMainFrame() {
+function SelectUploadMainFrame({ modelInfo }) {
     const [selectedPerson, setSelectedPerson] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showLinkModal, setShowLinkModal] = useState(false);
     const [isFading, setIsFading] = useState(false);
     const [isNavigating, setIsNavigating] = useState(false);
 
     const navigate = useNavigate();
 
-    const contactList = [
-        { id: 1, name: "平台", personality: "預設" },
-        { id: 2, name: "子安", personality: "測試" },
-        { id: 3, name: "ZK", personality: "測試2" },
-    ];
+    if (modelInfo.message === "此使用者沒有任何訓練的模型") {
+        modelInfo = [];
+    }
 
     function contactClickHandler(person) {
         setSelectedPerson(person);
@@ -49,6 +51,22 @@ function SelectUploadMainFrame() {
         setShowModal(false);
     }
 
+    function viewCreateModalHandler() {
+        setShowCreateModal(true);
+    }
+
+    function closeCreateModalHandler() {
+        setShowCreateModal(false);
+    }
+
+    function viewLinkModalHandler() {
+        setShowLinkModal(true);
+    }
+
+    function closeLinkModalHandler() {
+        setShowLinkModal(false);
+    }
+
     return (
         <div className={classes.outerContainer}>
             {isNavigating && <div className={classes.dummy}>
@@ -63,24 +81,48 @@ function SelectUploadMainFrame() {
                 />
             </div>
             <div className={`${classes.contactList} ${isFading ? classes["fade-out"] : classes["fade-in"]}`}>
-                {contactList.map((person, index) => (
+                {modelInfo.map((person, index) => (
                     <ContactPerson
                         key={index}
-                        name={person.name}
-                        personality={person.personality}
-                        isSelected={selectedPerson?.name === person.name}
+                        name={person.model_original_name}
+                        personality={person.anticipation}
+                        photo={person.modelphoto}
+                        isSelected={selectedPerson?.id === person.id}
                         onClick={() => contactClickHandler(person)}
                     />
                 ))}
-                {contactList.length < 4 && (<AddContactPerson onClick={viewModalHandler} />)}
+                {modelInfo.length < 4 && (<AddContactPerson onClick={viewModalHandler} />)}
             </div>
             <button className={`${classes.button} ${isFading ? classes["fade-out"] : classes["fade-in"]}`} disabled={!selectedPerson} onClick={startUploadHandler}>
                 進入訓練資料上傳
             </button>
-
+                
             {showModal && (
                 <div className={classes.modal} onClick={closeModalHandler}>
-                    <AddCPMainFrame onClick={(e) => e.stopPropagation()} onClickCloseBtn={closeModalHandler} />
+                    <CreateAndLink
+                        onClick={(e) => e.stopPropagation()}
+                        closeModal={closeModalHandler}
+                        viewCreateModal={viewCreateModalHandler}
+                        viewLinkModal={viewLinkModalHandler}
+                    />
+                </div>
+            )}
+
+            {showLinkModal && (
+                <div className={classes.modal} onClick={closeLinkModalHandler}>
+                    <EnterLink
+                        onClick={(e) => e.stopPropagation()}
+                        onClickCloseBtn={closeLinkModalHandler}
+                    />
+                </div>
+            )}
+
+            {showCreateModal && (
+                <div className={classes.modal} onClick={closeCreateModalHandler}>
+                    <AddCPMainFrame
+                        onClick={(e) => e.stopPropagation()}
+                        onClickCloseBtn={closeCreateModalHandler}
+                    />
                 </div>
             )}
         </div>

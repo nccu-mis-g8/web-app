@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import goBack_white from "../../images/goBack_white.png";
 import UploadFileMainFrame from "./UploadFileMainFrame";
 import CheckStatusMainFrame from "./CheckStatusMainFrame";
@@ -15,6 +15,12 @@ function TrainingAndUpload({ dummy }) {
         // 當組件首次加載時觸發淡入效果
         setPageSize(dummy);
     }, [dummy]);
+
+    const location = useLocation();
+    const { person } = location.state || {};
+    console.log(person);
+    const name = person ? person.model_original_name : "未命名模型";
+    const photo = person ? person.modelphoto: "";
 
     const navigate = useNavigate();
 
@@ -75,11 +81,11 @@ function TrainingAndUpload({ dummy }) {
                 {navigationStatus ? (
                     <UploadFileMainFrame viewModal={viewModalHandler} />
                 ) : (
-                    <CheckStatusMainFrame />
+                    <CheckStatusMainFrame name={name} avatar={photo} />
                 )}
 
                 {showModal && (
-                    <div className={classes.modal} onClick={closeModalHandler}>
+                    <div className={classes.modal}>
                         <StartTrainingHint
                             onClick={(e) => e.stopPropagation()}
                             goCheckStatus={checkClickHandler}

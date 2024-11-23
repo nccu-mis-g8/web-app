@@ -10,8 +10,20 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.notTxt {
     margin-top: 80px;
     margin-bottom: 60px;
+}
+
+.isTxt {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.isTxt2 {
+    margin-bottom: 40px;
 }
 
 .content {
@@ -44,6 +56,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 60%;
+}
+
+.masterName {
+    color: white;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 3px solid white;
+    width: 25%;
+    padding: 5px;
 }
 
 .fileBtn {
