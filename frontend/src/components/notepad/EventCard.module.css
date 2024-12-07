@@ -76,3 +76,74 @@
     font-style: normal;
     font-size: 25px;
 }
+
+
+.modalBackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: rgba(195, 195, 195, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    font-size: 18px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.modalButtons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.cancelButton {
+    background-color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.cancelButton:hover {
+    background-color: #f1f1f1;
+}
+
+.confirmButton {
+    background-color: #f47f81;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.confirmButton:hover {
+    background-color: #d56d6f;
+}
