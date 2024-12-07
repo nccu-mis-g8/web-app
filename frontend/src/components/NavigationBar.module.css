@@ -12,7 +12,7 @@
 .userIcon {
     width: 70px;
     height: 70px;
-    margin-top: 30px;
+    margin-top: 50%;
     cursor: pointer;
     object-fit: cover;
 }
@@ -34,14 +34,14 @@
 .icon {
     width: 80px;
     height: 80px;
-    margin-top: 15px;
+    margin-top: 15%;
     margin-bottom: 5px;
     cursor: pointer;
 }
 
 .logout {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 35%;
+    margin-bottom: 30%;
     margin-right: 7px;
     width: 65px;
     height: 65px;
