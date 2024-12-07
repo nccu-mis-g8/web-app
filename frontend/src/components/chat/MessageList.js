@@ -5,6 +5,8 @@ import UserMessage from "./UserMessage";
 import BotMessage from "./BotMessage";
 import ChooseResponse from "./ChooseResponse";
 import MessageInput from "./MessageInput";
+import question from "../../images/question.png";
+import infoImg4 from "../../images/infoImg4.png";
 import { inference } from "../../utils/modelUtils";
 import { refresh } from "../../utils/tokenUtils";
 import classes from "./MessageList.module.css";
@@ -15,6 +17,8 @@ function MessageList({ dummy, dummyName }) {
 
     // 用於儲存前五筆對話紀錄
     const [conversationHistory, setConversationHistory] = useState([]);
+
+    const [showInfoModal, setShowInfoModal] = useState(false);
 
     const [pendingChoices, setPendingChoices] = useState(null);
     const [loadingHint, setLoadingHint] = useState(false);
@@ -36,18 +40,21 @@ function MessageList({ dummy, dummyName }) {
 
     const name = person ? person.model_original_name : dummyName;
     const modelname = person ? person.modelname : "";
+    const isShared = person ? person.is_shared : "";
 
     async function sendMessageHandler(userMessage) {
         setMessages([...messages, { type: "user", text: userMessage }]);
         setLoadingHint(true);
 
+        console.log(conversationHistory);
+
         const formData = new FormData();
-        formData.append("is_shared", "false");
+        formData.append("is_shared", String(isShared));
         formData.append("modelname", modelname);
         formData.append("input_text", userMessage);
+        formData.append("session_history", JSON.stringify(conversationHistory));
 
         try {
-            console.log(conversationHistory);
             const response = await inference(formData);
             const accessToken = localStorage.getItem("accessToken");
 
@@ -63,8 +70,8 @@ function MessageList({ dummy, dummyName }) {
                         { type: "bot", text: botOutput },
                     ]);
                     updateConversationHistory({
-                        user: userMessage,
-                        model: botOutput,
+                        "user": userMessage,
+                        "model": botOutput,
                     });
 
                   } else if (results.length > 1) {
@@ -99,8 +106,8 @@ function MessageList({ dummy, dummyName }) {
                                 { type: "bot", text: botOutput },
                             ]);
                             updateConversationHistory({
-                                user: userMessage,
-                                model: botOutput,
+                                "user": userMessage,
+                                "model": botOutput,
                             });
 
                           } else if (results.length > 1) {
@@ -165,10 +172,19 @@ function MessageList({ dummy, dummyName }) {
         }
     }
 
+    function viewInfoModalHandler() {
+        setShowInfoModal(true);
+    }
+
+    function closeInfoModalHandler() {
+        setShowInfoModal(false);
+    }
+
+
     return (
         <>
             <div className={pageSize ? classes.outerContainerDummy : classes.outerContainer}>
-                <ChatRoomHeader name={name} />
+                <ChatRoomHeader name={name} modelName={modelname} viewInfoModal={viewInfoModalHandler} />
                 <div className={classes.listContainer}>
                     {messages.map((message, index) =>
                         message.type === "user" ? (
@@ -188,6 +204,34 @@ function MessageList({ dummy, dummyName }) {
                     <div ref={messagesEndRef}></div>
                 </div>
                 <MessageInput onSendMessage={sendMessageHandler} name={name} loadingHint={loadingHint} disabled={loadingHint} />
+
+                {showInfoModal && (
+                <div
+                    className={classes.infoModalOverlay}
+                    onClick={closeInfoModalHandler}
+                >
+                    <div
+                        className={classes.infoModalContent}
+                        onClick={(e) => e.stopPropagation()} // 防止點擊內容區域觸發關閉
+                    >
+                        <div className={classes.infoHeader}>
+                            <img src={question} alt="更多資訊" className={classes.infoIcon} />
+                            <div>系統使用說明 🌟</div>
+                        </div>
+                        <div className={classes.infoMainContent}>
+                            <div className={classes.infoContentContainer}>
+                                <ul className={classes.listStyle}>
+                                    <li>想讓好友也能體驗你的專屬模型？按下【分享】按鈕，自動複製分享連結，立刻分享快樂！💌</li>
+                                    <li>記事本功能：到記事本新增事件，讓模型學習更多有趣的回應，讓對話更真實、更貼心～📖✨</li>
+                                    <li>跟模型聊天時，一次輸入一則訊息，等模型回應後再繼續發送，這樣聊天最流暢！💬</li>
+                                </ul>
+                                <img src={infoImg4} alt="更多資訊用圖4" className={classes.infoImg} />
+                            </div>
+                        </div>
+                        <div className={classes.infoBottom}></div>
+                    </div>
+                </div>
+            )}
             </div>
         </>
     );

@@ -5,7 +5,6 @@
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Bearer " + accessToken,
             },
             body: formData,
@@ -22,7 +21,6 @@ export async function uploadCsv(formData) {
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Bearer " + accessToken,
             },
             body: formData,
@@ -39,10 +37,24 @@ export async function startTraining(formData) {
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Bearer " + accessToken,
             },
             body: formData,
+        }
+    );
+
+    return response;
+}
+
+export async function checkModelStatus(id) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        `https://nccu-group-8.work/utils/user/model_status/${id}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
         }
     );
 

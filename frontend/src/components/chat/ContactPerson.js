@@ -18,7 +18,7 @@ function ContactPerson({ name, modelId, personality, photo, isSelected, onClick 
     };
 
     async function handleConfirmDelete() {
-        console.log(modelId);
+
         try {
             const response = await deleteModel(modelId);
             const accessToken = localStorage.getItem("accessToken");

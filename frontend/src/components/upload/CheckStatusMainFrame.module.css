@@ -68,6 +68,11 @@
     font-size: 20px;
 }
 
+.beforeFetch {
+    height: 107px;
+    width: 235px;
+}
+
 .notUpload {
     color: white;
     background: #a99e9e;

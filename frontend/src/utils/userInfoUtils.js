@@ -1,24 +1,15 @@
-﻿export async function getUserAvatar() {
-    try{
-        const userId = localStorage.getItem("userId");
-    
-        const response = await fetch(
-            "http://127.0.0.1:5001/userinfo/user/retrieve_photo/" + userId,
-            {
-                method: "GET",
-            }
-        );
-
-        if (!response.ok) {
-            return false;
-        } else {
-            const blob = await response.blob();
-            return URL.createObjectURL(blob);
+﻿export async function uploadUserAvatar(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/userinfo/user/upload_photo",
+        {
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+            body: formData,
         }
+    );
 
-        return response;
-    } catch(error) {
-        console.error('Error during get avatar:', error);
-        return false; // 出現網路錯誤等問題
-    }
+    return response;
 }

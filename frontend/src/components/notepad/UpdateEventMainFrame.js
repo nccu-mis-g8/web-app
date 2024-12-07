@@ -1,5 +1,5 @@
-﻿import { useState, useRef, useEffect } from "react";
-import { useNavigate, useParams, redirect } from "react-router-dom";
+﻿import { useState, useRef } from "react";
+import { useNavigate, useParams, redirect, useLocation } from "react-router-dom";
 import goBack_white from "../../images/goBack_white.png";
 import event1 from "../../images/event_picture1.jpg";
 import event2 from "../../images/event_picture2.jpg";
@@ -7,19 +7,46 @@ import event3 from "../../images/event_picture3.jpg";
 import event4 from "../../images/event_picture4.jpg";
 import event5 from "../../images/event_picture5.jpg";
 import event6 from "../../images/event_picture6.jpg";
-import { createEvent } from "../../utils/notepadUtils";
+import { updateEvent } from "../../utils/notepadUtils";
 import { refresh } from "../../utils/tokenUtils";
-import classes from "./CreateNewEvent.module.css";
+import classes from "./UpdateEventMainFrame.module.css";
 
-function CreateNewEvent() {
-    const [eventTitle, setEventTitle] = useState("");
-    const [eventTime, setEventTime] = useState("");
+function UpdateEventMainFrame() {
+    const location = useLocation();
+
+    const { event } = location.state || {};
+
+    const photo = event ? event.event_picture : "";
+    const title = event ? event.event_title : "";
+    const content = event ? event.event_content : "";
+    const date = event ? event.event_date : "";
+
+    function extractNumber(url) {
+        const match = url.match(/event_picture(\d+)\.jpg$/); // 匹配 /.數字.jpg 結尾的部分
+        return match ? parseInt(match[1], 10) : null; // 如果匹配成功，返回數字，否則返回 null
+    }
+
+    const photo_index = extractNumber(photo);
+
+    function formatDate(dateString) {
+        if (!dateString) return ""; // 防止空值
+        const date = new Date(dateString); // 將 ISO 格式轉換為 Date 對象
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份補零
+        const day = String(date.getDate()).padStart(2, "0"); // 日期補零
+        return `${year}-${month}-${day}`; // 返回 YYYY-MM-DD 格式
+    }
+
+    const originalDate = formatDate(date);
+
+    const [eventTitle, setEventTitle] = useState(title);
+    const [eventTime, setEventTime] = useState(originalDate);
     const [imgControl, setImgControl] = useState(true);
-    const [selectedImgIndex, setSelectedImgIndex] = useState(null);
-    const [textContent, setTextContent] = useState(""); // 用於儲存文字內容
+    const [selectedImgIndex, setSelectedImgIndex] = useState(photo_index);
+    const [textContent, setTextContent] = useState(content); // 用於儲存文字內容
 
     const navigate = useNavigate();
-    const { time } = useParams();
+    const { time, id } = useParams();
 
     const photoName = [
         "event_picture1.jpg",
@@ -30,17 +57,10 @@ function CreateNewEvent() {
         "event_picture6.jpg",
     ]
 
-    useEffect(() => {
-        // 檢查 time 是否為數字
-        if (time !== "Recently") {
-            // 將 time 作為年份預設值設置
-            const defaultDate = `${time}-01-01`; // 設置預設日期為年份的1月1日
-            setEventTime(defaultDate);
-        }
-    }, [time]);
-
     function goBackHandler() {
-        navigate(`/notepad/event/${time}`);
+        navigate(`/notepad/event/${time}/${id}`, {
+            state: { event: event },
+        });
     }
 
     const dateInputRef = useRef(null);
@@ -67,13 +87,13 @@ function CreateNewEvent() {
         setTextContent(e.target.value); // 更新文字內容
     }
 
-    async function createEventHandler() {
+    async function updateEventHandler() {
         try {
-            const response = await createEvent(textContent, eventTime, photoName[selectedImgIndex-1], eventTitle);
+            const response = await updateEvent(id, textContent, eventTime, photoName[selectedImgIndex-1], eventTitle);
             const accessToken = localStorage.getItem("accessToken");
 
-            if (response.status === 201) {
-                console.log("創建事件成功");
+            if (response.status === 200) {
+                console.log("更新事件成功");
                 navigate(`/notepad/event/${time}`);
 
             } else if (response.status === 401 && accessToken) {
@@ -81,10 +101,10 @@ function CreateNewEvent() {
                 const checkReTokenStatus = await refresh();
 
                 if (checkReTokenStatus) {
-                    const response = await createEvent(textContent, eventTime, photoName[selectedImgIndex-1], eventTitle);
+                    const response = await updateEvent(id, textContent, eventTime, photoName[selectedImgIndex-1], eventTitle);
 
-                    if (response.status === 201) {
-                        console.log("創建事件成功");
+                    if (response.status === 200) {
+                        console.log("更新事件成功");
                         navigate(`/notepad/event/${time}`);
                     }
                 } else {
@@ -98,7 +118,7 @@ function CreateNewEvent() {
             redirect("/login");
 
         } catch(error) {
-            console.error("Error durning create event: ", error);
+            console.error("Error durning update event: ", error);
         }
     }
 
@@ -114,7 +134,7 @@ function CreateNewEvent() {
                 <div className={classes.title}>記事本</div>
             </div>
             <div className={classes.mainContent}>
-                <div className={classes.contentTitle}>新增事件紀錄</div>
+                <div className={classes.contentTitle}>更新事件紀錄</div>
                 <div className={classes.eventForm}>
                     <div className={classes.inputGroup}>
                         <div className={classes.inputTitle}>事件標題 ：</div>
@@ -130,9 +150,9 @@ function CreateNewEvent() {
                         <input
                             type="date"
                             ref={dateInputRef}
+                            value={eventTime}
                             onClick={handleDatePickerClick}
                             onChange={timeChangeHandler}
-                            value={eventTime}
                             className={classes.eventTimeInput}
                         />
                     </div>
@@ -255,13 +275,13 @@ function CreateNewEvent() {
                         !selectedImgIndex ||
                         !textContent
                     }
-                    onClick={createEventHandler}
+                   onClick={updateEventHandler}
                 >
-                    新增事件
+                    更新事件
                 </button>
             </div>
         </div>
     );
 }
 
-export default CreateNewEvent;
+export default UpdateEventMainFrame;

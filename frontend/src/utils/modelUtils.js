@@ -37,7 +37,6 @@ export async function deleteModel(modelId) {
         {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Bearer " + access_token,
             },
         }
@@ -56,6 +55,37 @@ export async function inference(formData) {
                 Authorization: "Bearer " + accessToken,
             },
             body: formData,
+        }
+    );
+
+    return response;
+}
+
+export async function getShareLink(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/finetune/share-model",
+        {
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+            body: formData,
+        }
+    );
+
+    return response;
+}
+
+export async function createModelByLink(link) {
+    const access_token = localStorage.getItem("accessToken");
+    const response = await fetch(
+        `https://nccu-group-8.work/finetune/model/${link}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + access_token,
+            },
         }
     );
 

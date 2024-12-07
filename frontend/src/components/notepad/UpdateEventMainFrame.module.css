@@ -118,7 +118,7 @@
 }
 
 .contentTitle::after {
-    content: "新增事件紀錄"; /* 使用 data-text 屬性來顯示文字 */
+    content: "更新事件紀錄"; /* 使用 data-text 屬性來顯示文字 */
     position: absolute;
     top: 0;
     left: 0px;

@@ -71,6 +71,16 @@
     height: 30px;
     cursor: pointer;
     margin-right: 35px;
+    transition: transform 0.3s, filter 0.3s ease-in-out;
+}
+
+.question:hover {
+    transform: scale(1.1); /* 放大 */
+    filter: brightness(1.25); /* 變亮 */
+}
+
+.infoBtn {
+    position: relative;
 }
 
 .contactList {
@@ -117,4 +127,254 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
+
+.canNotTrain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 50%;
+    max-width: 400px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    padding-bottom: 40px;
+}
+
+.closeBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.closeBtn {
+    width: 40px;
+    height: 35px;
+    margin-top: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+
+
+.lightRays {
+    position: absolute;
+    top: 5px;
+    left: 13px;
+    display: none;
+    pointer-events: none; /* 防止干擾點擊 */
+}
+
+.lightRay {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: rgba(255, 223, 0, 0.9); /* 金黃色光線 */
+    transform-origin: center bottom;
+    opacity: 0;
+    animation: lightRayFade 0.7s ease-in-out infinite;
+}
+
+.lightRay:nth-child(1) {
+    transform: rotate(-80deg) translateY(-20px);
+}
+.lightRay:nth-child(2) {
+    transform: rotate(-40deg) translateY(-20px);
+}
+.lightRay:nth-child(3) {
+    transform: rotate(0deg) translateY(-20px);
+}
+.lightRay:nth-child(4) {
+    transform: rotate(40deg) translateY(-20px);
+}
+.lightRay:nth-child(5) {
+    transform: rotate(80deg) translateY(-20px);
+}
+
+@keyframes lightRayFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.infoBtn:hover .lightRays {
+    display: block;
+}
+
+.infoModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease; /* 淡入動畫 */
+    z-index: 20;
+}
+
+.infoModalContent {
+    background: white;
+    width: 80%;
+    max-width: 650px;
+    border-radius: 15px;
+    border: 4px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.5s ease; /* 滑入動畫 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+    padding: 12px 17px;
+}
+
+.infoIcon {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.infoMainContent {
+    padding: 0px 15px;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: rgb(237, 232, 232);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoContentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.listStyle {
+    width: 67%;
+    list-style-type: disc;
+    padding-left: 25px;
+    text-align: left;
+    margin: 0;
+    
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.listStyle2 {
+    width: 100%;
+    list-style-type: disc;
+    padding-left: 25px;
+    text-align: left;
+    margin-bottom: 15px;
+    
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.listStyle li, .listStyle2 li {
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.infoImg {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+.infoTitle1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 22px;
+}
+
+.infoTitle2 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 22px;
+}
+
+.infoBottom {
+    height: 45px;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 自定義滾動條樣式 */
+.infoMainContent::-webkit-scrollbar {
+    width: 8px; /* 控制滾動條的寬度 */
+}
+
+.infoMainContent::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.6); /* 滾動條顏色 */
+    border-radius: 10px; /* 圓角滾動條 */
+    border: 2px solid rgba(237, 232, 232, 1); /* 滾動條周圍的間隙顏色 */
+}
+
+.infoMainContent::-webkit-scrollbar-track {
+    background-color: rgba(237, 232, 232, 1); /* 滾動條軌道的背景色 */
+    border-radius: 10px; /* 圓角軌道 */
+}
+
+/* 鼠標懸停時改變滾動條顏色 */
+.infoMainContent::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80, 80, 80, 0.8); /* 鼠標懸停時的顏色 */
 }
