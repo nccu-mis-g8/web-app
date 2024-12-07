@@ -1,8 +1,11 @@
 ﻿import { useState, useEffect } from "react";
+import { redirect } from "react-router-dom";
 import default_avatar200 from "../../images/default_avatar200.png";
 import send_photo from "../../images/send_photo.png";
 import question from "../../images/question.png";
 import classes from "./UserInfoAvatar.module.css";
+import { uploadUserAvatar } from "../../utils/userInfoUtils";
+import { refresh } from "../../utils/tokenUtils";
 
 function UserInfoMainFrame() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -51,33 +54,35 @@ function UserInfoMainFrame() {
         }
         setSelectedFile(file);
 
-        const accessToken = localStorage.getItem("accessToken")
+        const accessToken = localStorage.getItem("accessToken");
         const formData = new FormData();
         formData.append("file", file);
 
         try {
-            const response = await fetch(
-                "https://nccu-group-8.work/userinfo/user/upload_photo",
-                {
-                    method: "POST",
-                    headers: {
-                        "Authorization": "Bearer " + accessToken
-                    },
-                    body: formData,
-                }
-            );
-
-            console.log(response);
+            const response = await uploadUserAvatar(formData);
 
             if (response.status === 200) {
                 console.log("上傳成功");
-                alert("上傳成功!");
-
-            } else if (response.status === 400) {
                 const responseData = await response.json();
-                const error = responseData.message;
-                console.log("錯誤訊息" + error);
-                alert("請上傳正確格式的圖片");
+                localStorage.setItem("photo", responseData.user_avatar);
+                window.location.reload();
+            } else if (response.status === 401 && accessToken) {
+                // access Token過期，用refresh Token去拿新的access Token
+                const checkReTokenStatus = await refresh();
+                if (checkReTokenStatus) {
+                    const response = await uploadUserAvatar(formData);
+                    if (response.status === 200) {
+                        console.log("上傳成功");
+                        const responseData = await response.json();
+                        localStorage.setItem("photo", responseData.user_avatar);
+                        window.location.reload();
+                    }
+                } else {
+                    // refresh Token過期，重新登入並刪掉 localStorage 裡的東西
+                    // alert("refresh Token過期，請重新登入!");
+                    localStorage.clear();
+                    redirect("/login");
+                }
             } else {
                 const responseData = await response.json();
                 const error = responseData.message;
@@ -85,7 +90,8 @@ function UserInfoMainFrame() {
                 alert("發生錯誤，請重新整理後再試一次");
             }
         } catch (error) {
-            console.error("Error: ", error);
+            console.error("Error durning inference model: ", error);
+            redirect("/login");
         }
     }
 
@@ -93,11 +99,6 @@ function UserInfoMainFrame() {
         <div className={classes.avatarContainer}>
             <div className={classes.header}>
                 <div className={classes.title}>個人資料</div>
-                <img
-                    src={question}
-                    alt="更多資訊"
-                    className={classes.question}
-                />
             </div>
             <div className={classes.avatarWrapper}>
                 <img src={userAvatar} alt="頭像" className={classes.avatar} />

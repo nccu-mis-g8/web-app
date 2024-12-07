@@ -49,13 +49,23 @@
     height: 30px;
     cursor: pointer;
     margin-right: 35px;
+    transition: transform 0.3s, filter 0.3s ease-in-out;
+}
+
+.question:hover {
+    transform: scale(1.1); /* 放大 */
+    filter: brightness(1.25); /* 變亮 */
+}
+
+.infoBtn {
+    position: relative;
 }
 
 .avatarWrapper {
     position: relative;
     width: 200px;
     height: 200px;
-    margin-top: 20px;
+    margin-top: 5%;
 }
 
 .avatar {
@@ -176,7 +186,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .modalContent {
@@ -203,4 +213,117 @@
     font-weight: bold;
     color: #333;
     cursor: pointer;
+}
+
+.lightRays {
+    position: absolute;
+    top: 5px;
+    left: 13px;
+    display: none;
+    pointer-events: none; /* 防止干擾點擊 */
+}
+
+.lightRay {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: rgba(255, 223, 0, 0.9); /* 金黃色光線 */
+    transform-origin: center bottom;
+    opacity: 0;
+    animation: lightRayFade 0.7s ease-in-out infinite;
+}
+
+.lightRay:nth-child(1) {
+    transform: rotate(-80deg) translateY(-20px);
+}
+.lightRay:nth-child(2) {
+    transform: rotate(-40deg) translateY(-20px);
+}
+.lightRay:nth-child(3) {
+    transform: rotate(0deg) translateY(-20px);
+}
+.lightRay:nth-child(4) {
+    transform: rotate(40deg) translateY(-20px);
+}
+.lightRay:nth-child(5) {
+    transform: rotate(80deg) translateY(-20px);
+}
+
+@keyframes lightRayFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.infoBtn:hover .lightRays {
+    display: block;
+}
+
+.infoModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease; /* 淡入動畫 */
+    z-index: 20;
+}
+
+.infoModalContent {
+    background: white;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    border: 4px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.5s ease; /* 滑入動畫 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: flex-start;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoMainContent {
+    height: 300px;
+    background-color: rgb(227, 223, 223);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoBottom {
+    height: 50px;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
