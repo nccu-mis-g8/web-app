@@ -1,0 +1,315 @@
+﻿.createEventContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    min-height: 600px;
+    width: 95%;
+    background: black;
+    border-radius: 15px;
+    border: none;
+    margin-right: 4%;
+    position: relative;
+}
+
+.checkEventContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(184, 174, 119, 0.5);
+    border-radius: 11px;
+    pointer-events: none;
+}
+
+.header {
+    background-color: black;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 3px solid white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.goBack {
+    width: 25px;
+    height: 42px;
+    cursor: pointer;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.title {
+    color: white;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.mainContent {
+    background-image: url("../../images/notepadBackground.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.mainContent::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 226%;
+    background-color: rgba(0, 0, 0, 0.6); /* 調整透明度的遮罩層 */
+    z-index: 2;
+}
+
+.mainContent::-webkit-scrollbar {
+    width: 8px; /* 滾動條寬度 */
+}
+
+.mainContent::-webkit-scrollbar-track {
+    background: transparent; /* 滾動條背景 */
+    border-radius: 10px; /* 圓角 */
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.5); /* 滾動條顏色 */
+    border-radius: 10px; /* 圓角 */
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 200, 200, 0.7); /* 懸停顏色變亮 */
+}
+
+.contentTitle {
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
+    position: relative;
+    z-index: 5;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 40px;
+    color: white;
+    margin-top: 25px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.contentTitle::after {
+    content: "更新事件紀錄"; /* 使用 data-text 屬性來顯示文字 */
+    position: absolute;
+    top: 0;
+    left: 0px;
+    color: #8f1e91;
+    z-index: -1;
+    transform: translate(4px, 4px); /* 控制陰影偏移距離 */
+    filter: blur(1px); /* 模糊效果 */
+    font-weight: bold;
+}
+
+.eventForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 70%;
+    position: relative;
+    z-index: 5;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.inputGroup {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.inputGroup2 {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.inputTitle {
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.eventTitleInput {
+    width: 60%;
+    border: none;
+    border-bottom: 2.5px solid white;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    margin-left: 7px;
+    
+    color: white;
+    font-size: 22px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.eventTimeInput {
+    width: 200px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(241, 241, 241, 0.7); /* 半透明背景 */
+    font-size: 20px;
+    outline: none;
+    appearance: none; /* 移除預設樣式 */
+    cursor: pointer;
+    margin-left: 7px;
+}
+
+.imgGroup {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.eventImg {
+    width: 160px;
+    height: 120px;
+    cursor: pointer;
+}
+
+
+.eventImg:hover {
+    transform: scale(1.03);
+}
+
+.eventImg:active {
+    transform: scale(1.01);
+}
+
+.selectedImg {
+    border: 5px solid #e387d2;
+}
+
+.dummyLeftImg {
+    width: 32px;
+}
+
+.leftImg,
+.rightImg {
+    width: 22px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.leftImg {
+    margin-left: 10px;
+}
+
+.rightImg {
+    transform: rotate(180deg);
+}
+
+.leftImg:hover {
+    transform: scale(1.1);
+}
+
+.rightImg:hover {
+    transform: scale(1.1) rotate(180deg);
+}
+
+.leftImg:active {
+    transform: scale(0.9);
+}
+
+.rightImg:active {
+    transform: scale(0.9) rotate(180deg);
+}
+
+.textareaContainer {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: transparent;
+    margin-left: 10px;
+}
+
+.textarea {
+    width: 100%;
+    height: 420px; /* 總高度 */
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 37px, /* 行高 */
+        white 40px /* 線條顏色和間隔 */
+    );
+    color: white;
+    border: none;
+    resize: none; /* 禁止調整大小 */
+    outline: none; /* 移除聚焦時的邊框 */
+    font-size: 20px;
+    line-height: 40px; /* 行高，與背景線條一致 */
+    font-family: "Noto Sans TC", sans-serif;
+    overflow: hidden; /* 防止滾動條 */
+    box-sizing: border-box;
+    white-space: pre-wrap; /* 保持文字換行 */
+}
+
+.charCount {
+    position: absolute;
+    bottom: -25px; /* 調整字數計數器的位置 */
+    right: 0;
+    color: white;
+    font-size: 14px;
+    font-family: "Noto Sans TC", sans-serif;
+    user-select: none;
+}
+
+.createBtn {
+    width: 25%;
+    padding: 10px;
+    background-color: #a8a7a7;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    cursor: not-allowed;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    position: relative;
+    z-index: 10;
+}
+
+.createBtn:enabled {
+    background: linear-gradient(to bottom, #a56d9a 0%, #4d3348 100%);;
+    cursor: pointer
+}
