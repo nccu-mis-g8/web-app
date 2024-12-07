@@ -45,6 +45,16 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    transition: transform 0.3s, filter 0.3s ease-in-out;
+}
+
+.question:hover {
+    transform: scale(1.1); /* 放大 */
+    filter: brightness(1.25); /* 變亮 */
+}
+
+.infoBtn {
+    position: relative;
 }
 
 .tooltip {
@@ -78,4 +88,53 @@
         opacity: 0;
         transform: translate(-50%, -10px); /* 繼續向上並消失 */
     }
+}
+
+
+.lightRays {
+    position: absolute;
+    top: 5px;
+    left: 13px;
+    display: none;
+    pointer-events: none; /* 防止干擾點擊 */
+}
+
+.lightRay {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: rgba(255, 223, 0, 0.9); /* 金黃色光線 */
+    transform-origin: center bottom;
+    opacity: 0;
+    animation: lightRayFade 0.7s ease-in-out infinite;
+}
+
+.lightRay:nth-child(1) {
+    transform: rotate(-80deg) translateY(-20px);
+}
+.lightRay:nth-child(2) {
+    transform: rotate(-40deg) translateY(-20px);
+}
+.lightRay:nth-child(3) {
+    transform: rotate(0deg) translateY(-20px);
+}
+.lightRay:nth-child(4) {
+    transform: rotate(40deg) translateY(-20px);
+}
+.lightRay:nth-child(5) {
+    transform: rotate(80deg) translateY(-20px);
+}
+
+@keyframes lightRayFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.infoBtn:hover .lightRays {
+    display: block;
 }
