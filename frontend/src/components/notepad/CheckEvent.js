@@ -23,7 +23,10 @@ function CheckEvent() {
 
             if (response.status === 200) {
                 const responseData = await response.json();
-                setEventList(responseData);
+                const sortedEvents = responseData.sort(
+                    (a, b) => new Date(b.event_date) - new Date(a.event_date)
+                );
+                setEventList(sortedEvents);
             } else if (response.status === 404) {
                 setEventList([]);
             } else if (response.status === 401 && accessToken) {
@@ -35,7 +38,10 @@ function CheckEvent() {
 
                     if (response.status === 200) {
                         const responseData = await response.json();
-                        setEventList(responseData);
+                        const sortedEvents = responseData.sort(
+                            (a, b) => new Date(b.event_date) - new Date(a.event_date)
+                        );
+                        setEventList(sortedEvents);
                     }
                 } else {
                     // refresh Token過期，重新登入並刪掉 localStorage 裡的東西
