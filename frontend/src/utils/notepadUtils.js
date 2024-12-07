@@ -55,3 +55,40 @@ export async function createEvent(content, date, photo, title) {
 
     return response;
 }
+
+export async function deleteEvent(eventId) {
+    const access_token = localStorage.getItem("accessToken");
+    const response = await fetch(
+        `https://nccu-group-8.work/event/delete_event/${eventId}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer " + access_token,
+            },
+        }
+    );
+
+    return response;
+}
+
+export async function updateEvent(id, content, date, photo, title) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        `https://nccu-group-8.work/event/update_event/${id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + accessToken,
+            },
+            body: JSON.stringify({
+                event_content: content,
+                event_date: date,
+                event_picture: photo,
+                event_title: title
+            }),
+        }
+    );
+
+    return response;
+}
