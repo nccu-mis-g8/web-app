@@ -1,16 +1,15 @@
 ﻿import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import goBack_white from "../../images/goBack_white.png";
+import pencil from "../../images/pencil.png";
 import classes from "./EventContentMainFrame.module.css";
 
 function EventContentMainFrame() {
     const navigate = useNavigate();
-    const { time } = useParams();
+    const { time, id } = useParams();
     const location = useLocation();
 
     const { event } = location.state || {};
-
-    console.log(event);
 
     const photo = event ? event.event_picture : "";
     const title = event ? event.event_title : "";
@@ -22,6 +21,12 @@ function EventContentMainFrame() {
 
     function goBackToNotepadMainHandler() {
         navigate("/notepad");
+    }
+
+    function goUpdateEventHandler() {
+        navigate(`/notepad/event/${time}/updateEvent/${id}`, {
+            state: { event: event },
+        });
     }
 
     return (
@@ -36,7 +41,12 @@ function EventContentMainFrame() {
                 <div className={classes.title}>記事本</div>
             </div>
             <div className={classes.mainContent}>
-                <div className={classes.backToNotePadBtn} onClick={goBackToNotepadMainHandler}>回記事本主頁</div>
+                <div
+                    className={classes.backToNotePadBtn}
+                    onClick={goBackToNotepadMainHandler}
+                >
+                    回記事本主頁
+                </div>
                 <div className={classes.contentContainer}>
                     <div className={classes.titleAndImg}>
                         <img
@@ -45,6 +55,15 @@ function EventContentMainFrame() {
                             className={classes.photo}
                         />
                         <div className={classes.contentTitle}>{title}</div>
+                        <div className={classes.tooltipContainer}>
+                            <img
+                                src={pencil}
+                                alt="編輯事件"
+                                className={classes.pencil}
+                                onClick={goUpdateEventHandler}
+                            />
+                            <div className={classes.tooltip}>編輯事件</div>
+                        </div>
                     </div>
                     <div className={classes.content}>{content}</div>
                 </div>
