@@ -15,6 +15,7 @@ import Notepad from "./routes/Notepad";
 import Event from "./routes/Event";
 import EventContent from "./routes/EventContent";
 import CreateEvent from "./routes/CreateEvent";
+import UpdateEvent from "./routes/UpdateEvent";
 import { loader as modelInfoLoader } from "./routes/SelectChat";
 import { loader as uploadInfoLoader } from "./routes/SelectUpload";
 import classes from "./index.css";
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
     { path:"/notepad/event/:time", element: <Event/> },
     { path:"/notepad/event/:time/:id", element: <EventContent/> },
     { path:"/notepad/event/:time/createEvent", element: <CreateEvent />},
+    { path:"/notepad/event/:time/updateEvent/:id", element: <UpdateEvent />},
     // { path: "/test", element: <SelectChat />}
 ]);
 
