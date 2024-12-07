@@ -1,8 +1,11 @@
 ﻿import { useState } from "react";
+import { redirect } from "react-router-dom";
 import logo from "../../images/default_avatar.png";
+import { uploadTxt, startTraining } from "../../utils/uploadUtils";
+import { refresh } from "../../utils/tokenUtils";
 import classes from "./UploadFileMainFrame.module.css";
 
-function UploadFileMainFrame({ viewModal }) {
+function UploadFileMainFrame({ viewModal, id, modelName }) {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState("");
     const [masterName, setMasterName] = useState(".");
@@ -31,7 +34,60 @@ function UploadFileMainFrame({ viewModal }) {
     }
 
     async function trainingHandler() {
-        viewModal();
+        try {
+            const formDataUpload = new FormData();
+            formDataUpload.append("user_info", JSON.stringify({ model_Id: String(id), master_name: masterName }));
+            formDataUpload.append("file", file);
+
+            const formDataTrain = new FormData();
+            formDataTrain.append("model_id", id);
+
+            const response = await uploadTxt(formDataUpload);
+            const accessToken = localStorage.getItem("accessToken");
+
+            if (response.status === 200) {
+                console.log("上傳成功");
+                const responseTrain = await startTraining(formDataTrain);
+                // console.log("開始訓練成功");
+                // viewModal();
+
+                if (responseTrain.status === 200) {
+                    console.log("開始訓練成功");
+                    viewModal();
+                }
+
+            } else if (response.status === 401 && accessToken) {
+                // access Token過期，用refresh Token去拿新的access Token
+                const checkReTokenStatus = await refresh();
+
+                if (checkReTokenStatus) {
+                    const response = await uploadTxt(formDataUpload);
+
+                    if (response.status === 200) {
+                        console.log("上傳成功");
+                        const responseTrain = await startTraining(formDataTrain);
+                        // console.log("開始訓練成功");
+                        // viewModal();
+        
+                        if (responseTrain.status === 200) {
+                            console.log("開始訓練成功");
+                            viewModal();
+                        }
+                    } 
+
+                } else {
+                    // refresh Token過期，重新登入並刪掉 localStorage 裡的東西
+                    // alert("refresh Token過期，請重新登入!");
+                    localStorage.clear();
+                    redirect("/login");
+                }
+            }
+            // 發生其他問題
+            redirect("/login");
+        } catch (error) {
+            console.error("Error durning train model: ", error);
+        }
+        
     }
 
     return (
