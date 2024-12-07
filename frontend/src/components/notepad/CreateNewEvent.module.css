@@ -55,6 +55,9 @@
 
 .mainContent {
     background-image: url("../../images/notepadBackground.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -73,7 +76,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 217%;
+    height: 226%;
     background-color: rgba(0, 0, 0, 0.6); /* 調整透明度的遮罩層 */
     z-index: 2;
 }
@@ -97,6 +100,9 @@
 }
 
 .contentTitle {
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
     position: relative;
     z-index: 5;
     font-family: "Noto Sans TC", sans-serif;
@@ -127,12 +133,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    width: 70%;
     position: relative;
     z-index: 5;
     font-family: "Noto Sans TC", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    margin-left: 18%;
 }
 
 .inputGroup {
@@ -256,7 +263,7 @@
 
 .textarea {
     width: 100%;
-    height: 440px; /* 總高度 */
+    height: 420px; /* 總高度 */
     background: repeating-linear-gradient(
         to bottom,
         transparent 0px,
@@ -300,7 +307,6 @@
     font-style: normal;
     position: relative;
     z-index: 10;
-    margin-left: 40%;
 }
 
 .createBtn:enabled {

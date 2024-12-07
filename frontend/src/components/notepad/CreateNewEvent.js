@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from "react";
+﻿import { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams, redirect } from "react-router-dom";
 import goBack_white from "../../images/goBack_white.png";
 import event1 from "../../images/event_picture1.jpg";
@@ -29,6 +29,15 @@ function CreateNewEvent() {
         "event_picture5.jpg",
         "event_picture6.jpg",
     ]
+
+    useEffect(() => {
+        // 檢查 time 是否為數字
+        if (time !== "Recently") {
+            // 將 time 作為年份預設值設置
+            const defaultDate = `${time}-01-01`; // 設置預設日期為年份的1月1日
+            setEventTime(defaultDate);
+        }
+    }, [time]);
 
     function goBackHandler() {
         navigate(`/notepad/event/${time}`);
@@ -74,7 +83,7 @@ function CreateNewEvent() {
                 if (checkReTokenStatus) {
                     const response = await createEvent(textContent, eventTime, photoName[selectedImgIndex-1], eventTitle);
 
-                    if (response.status === 200) {
+                    if (response.status === 201) {
                         console.log("創建事件成功");
                         navigate(`/notepad/event/${time}`);
                     }
@@ -123,6 +132,7 @@ function CreateNewEvent() {
                             ref={dateInputRef}
                             onClick={handleDatePickerClick}
                             onChange={timeChangeHandler}
+                            value={eventTime}
                             className={classes.eventTimeInput}
                         />
                     </div>
@@ -227,12 +237,12 @@ function CreateNewEvent() {
                         <div className={classes.textareaContainer}>
                             <textarea
                                 className={classes.textarea}
-                                maxLength={300} // 限制最多輸入 300 字
+                                maxLength={200} // 限制最多輸入 300 字
                                 value={textContent}
                                 onChange={textChangeHandler}
                             ></textarea>
                             <div className={classes.charCount}>
-                                {textContent.length} / 300
+                                {textContent.length} / 200
                             </div>
                         </div>
                     </div>

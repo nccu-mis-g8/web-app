@@ -20,7 +20,9 @@ function TrainingAndUpload({ dummy }) {
     const { person } = location.state || {};
     console.log(person);
     const name = person ? person.model_original_name : "未命名模型";
-    const photo = person ? person.modelphoto: "";
+    const photo = person ? person.modelphoto : "";
+    const modelId = person ? person.model_id : "";
+    const modelname = person? person.modelname : "";
 
     const navigate = useNavigate();
 
@@ -79,9 +81,9 @@ function TrainingAndUpload({ dummy }) {
                     </div>
                 </div>
                 {navigationStatus ? (
-                    <UploadFileMainFrame viewModal={viewModalHandler} />
+                    <UploadFileMainFrame viewModal={viewModalHandler} id={modelId} modelName={modelname} />
                 ) : (
-                    <CheckStatusMainFrame name={name} avatar={photo} />
+                    <CheckStatusMainFrame name={name} avatar={photo} id={modelId} />
                 )}
 
                 {showModal && (
