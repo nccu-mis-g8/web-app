@@ -175,9 +175,9 @@ function MessageList({ dummy, dummyName }) {
     function updateConversationHistory(newConversation) {
         setConversationHistory((prevHistory) => {
             const updatedHistory = [...prevHistory, newConversation];
-            if (updatedHistory.length > 5) {
-                updatedHistory.shift(); // 超過 5 條時刪除最舊的
-            }
+            // if (updatedHistory.length > 5) {
+            //     updatedHistory.shift(); // 超過 5 條時刪除最舊的
+            // }
             return updatedHistory;
         });
     }
