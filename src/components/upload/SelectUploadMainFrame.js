@@ -114,10 +114,12 @@ function SelectUploadMainFrame({ modelInfo }) {
                 {modelInfo.map((person, index) => (
                     <ContactPerson
                         key={index}
+                        modelId={person.model_id}
                         name={person.model_original_name}
                         personality={person.anticipation}
                         photo={person.modelphoto}
                         isSelected={selectedPerson?.model_id === person.model_id}
+                        isShared={person.is_shared}
                         onClick={() => contactClickHandler(person)}
                     />
                 ))}
