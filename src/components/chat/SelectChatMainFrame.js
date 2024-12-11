@@ -110,6 +110,7 @@ function SelectChatMainFrame({ modelInfo }) {
                         personality={person.anticipation}
                         photo={person.modelphoto}
                         isSelected={selectedPerson?.model_id === person.model_id}
+                        isShared={person.is_shared}
                         onClick={() => contactClickHandler(person)}
                     />
                 ))}
@@ -171,7 +172,7 @@ function SelectChatMainFrame({ modelInfo }) {
                             <div className={classes.infoContentContainer}>
                                 <ul className={classes.listStyle}>
                                     <li>點選想聊天的模型，按下【開始聊天】就能進入充滿情感的聊天室啦！🎉</li>
-                                    <li>在模型卡片上按下左鍵，能決定是否要刪除這位模型喔～🗑️</li>
+                                    <li>在模型卡片上按下左鍵，能決定是否要刪除這位模型喔 (無法刪除分享模型)～🗑️</li>
                                     <li>想要更多新的聊天體驗？使用【新增聊天對象】創建屬於你的模型，每位用戶最多可以創建4個模型，超多選擇！✨</li>
                                 </ul>
                                 <img src={infoImg1} alt="更多資訊用圖1" className={classes.infoImg} />

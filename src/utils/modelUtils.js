@@ -61,6 +61,17 @@ export async function inference(formData) {
     return response;
 }
 
+export async function getChatResult(requestId) {
+    const response = await fetch(
+        `https://nccu-group-8.work/finetune/chat-result/${requestId}`,
+        {
+            method: "GET",
+        }
+    );
+
+    return response;
+}
+
 export async function getShareLink(formData) {
     const accessToken = localStorage.getItem("accessToken");
     const response = await fetch(

@@ -5,12 +5,14 @@ import classes from "./ContactPerson.module.css";
 import { deleteModel } from "../../utils/modelUtils";
 import { refresh } from "../../utils/tokenUtils";
 
-function ContactPerson({ name, modelId, personality, photo, isSelected, onClick }) {
+function ContactPerson({ name, modelId, personality, photo, isSelected, onClick, isShared }) {
     const [showModal, setShowModal] = useState(false);
 
     const handleRightClick = (event) => {
         event.preventDefault(); // 阻止預設右鍵選單
-        setShowModal(true);
+        if(isShared === false) {
+            setShowModal(true);
+        }
     };
 
     const handleCloseModal = () => {

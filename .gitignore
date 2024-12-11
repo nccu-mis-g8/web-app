@@ -2,6 +2,8 @@
 build/
 dist/
 *.spec
+node_modules
+backup
 
 # Python cache files
 __pycache__/
