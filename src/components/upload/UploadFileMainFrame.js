@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 import { redirect } from "react-router-dom";
 import logo from "../../images/default_avatar.png";
-import { uploadTxt, startTraining } from "../../utils/uploadUtils";
+import { uploadTxt, startTraining, uploadCsv } from "../../utils/uploadUtils";
 import { refresh } from "../../utils/tokenUtils";
 import classes from "./UploadFileMainFrame.module.css";
 
@@ -35,6 +35,7 @@ function UploadFileMainFrame({ viewModal, id, modelName }) {
 
     async function trainingHandler() {
         try {
+            const isTxtFile = file.type === "text/plain" || file.name.endsWith(".txt");
             const formDataUpload = new FormData();
             formDataUpload.append("user_info", JSON.stringify({ model_Id: String(id), master_name: masterName }));
             formDataUpload.append("file", file);
@@ -42,7 +43,14 @@ function UploadFileMainFrame({ viewModal, id, modelName }) {
             const formDataTrain = new FormData();
             formDataTrain.append("model_id", id);
 
-            const response = await uploadTxt(formDataUpload);
+            let response;
+
+            if (isTxtFile) {
+                response = await uploadTxt(formDataUpload);
+            } else {
+                response = await uploadCsv(formDataUpload);
+            }
+            
             const accessToken = localStorage.getItem("accessToken");
 
             if (response.status === 200) {
