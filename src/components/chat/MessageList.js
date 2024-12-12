@@ -22,6 +22,7 @@ function MessageList({ dummy, dummyName }) {
 
     const [pendingChoices, setPendingChoices] = useState(null);
     const [loadingHint, setLoadingHint] = useState(false);
+    const [inputStatus, setInputStatus] = useState(false);
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
@@ -89,6 +90,10 @@ function MessageList({ dummy, dummyName }) {
                     // 只有一個回答時
                     const botOutput = results[0].output;
                     setLoadingHint(false);
+                    if (botOutput.includes("沒問題了")) {
+                        setInputStatus(true);
+                    }
+                    
                     setMessages((prevMessages) => [
                         ...prevMessages,
                         { type: "bot", text: botOutput },
@@ -253,7 +258,7 @@ function MessageList({ dummy, dummyName }) {
                     onSendMessage={sendMessageHandler}
                     name={name}
                     loadingHint={loadingHint}
-                    disabled={loadingHint}
+                    disabled={loadingHint || inputStatus}
                 />
 
                 {showInfoModal && (
