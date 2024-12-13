@@ -88,6 +88,22 @@ export async function getShareLink(formData) {
     return response;
 }
 
+export async function generateTrustReport(formData) {
+    const accessToken = localStorage.getItem("accessToken");
+    const response = await fetch(
+        "https://nccu-group-8.work/finetune/create-trust-report",
+        {
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+            body: formData,
+        }
+    );
+
+    return response;
+}
+
 export async function createModelByLink(link) {
     const access_token = localStorage.getItem("accessToken");
     const response = await fetch(

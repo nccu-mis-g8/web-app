@@ -1,15 +1,15 @@
-﻿import { useState, useEffect, useRef } from "react";
-import { useParams, useLocation, redirect } from "react-router-dom";
-import ChatRoomHeader from "./ChatRoomHeader";
-import UserMessage from "./UserMessage";
+﻿import { useEffect, useRef, useState } from "react";
+import { redirect, useLocation, useParams } from "react-router-dom";
+import infoImg4 from "../../images/infoImg4.png";
+import question from "../../images/question.png";
+import { generateTrustReport, getChatResult, inference } from "../../utils/modelUtils";
+import { refresh } from "../../utils/tokenUtils";
 import BotMessage from "./BotMessage";
+import ChatRoomHeader from "./ChatRoomHeader";
 import ChooseResponse from "./ChooseResponse";
 import MessageInput from "./MessageInput";
-import question from "../../images/question.png";
-import infoImg4 from "../../images/infoImg4.png";
-import { inference, getChatResult } from "../../utils/modelUtils";
-import { refresh } from "../../utils/tokenUtils";
 import classes from "./MessageList.module.css";
+import UserMessage from "./UserMessage";
 
 function MessageList({ dummy, dummyName }) {
     const [messages, setMessages] = useState([]);
@@ -86,33 +86,68 @@ function MessageList({ dummy, dummyName }) {
             console.log("Chat results:", responseData.result);
             // 在前端顯示對話結果
             const results = responseData.result;
-                if (results.length === 1) {
-                    // 只有一個回答時
-                    const botOutput = results[0].output;
-                    setLoadingHint(false);
-                    if (botOutput.includes("沒問題了")) {
-                        setInputStatus(true);
-                    }
-                    
-                    setMessages((prevMessages) => [
-                        ...prevMessages,
-                        { type: "bot", text: botOutput },
-                    ]);
-                    updateConversationHistory({
-                        user: userMessage,
-                        model: botOutput,
-                    });
-                } else if (results.length > 1) {
-                    // 有兩個或更多回答時
-                    let botOutputs = [];
-                    botOutputs[0] = results[0].output;
-                    botOutputs[1] = results[1].output;
-                    setLoadingHint(false);
-                    setPendingChoices(botOutputs);
-                    console.log(conversationHistory);
+            if (results.length === 1) {
+                // 只有一個回答時
+                const botOutput = results[0].output;
+                setLoadingHint(false);
+                if (botOutput.includes("沒問題了")) {
+                    setInputStatus(true);
+                    genenerateTrustReport();
                 }
+
+                setMessages((prevMessages) => [
+                    ...prevMessages,
+                    { type: "bot", text: botOutput },
+                ]);
+                updateConversationHistory({
+                    user: userMessage,
+                    model: botOutput,
+                });
+            } else if (results.length > 1) {
+                // 有兩個或更多回答時
+                let botOutputs = [];
+                botOutputs[0] = results[0].output;
+                botOutputs[1] = results[1].output;
+                setLoadingHint(false);
+                setPendingChoices(botOutputs);
+                console.log(conversationHistory);
+            }
         } else {
             console.error("Display error:", responseData.message);
+        }
+    }
+
+    async function genenerateTrustReport() {
+        const formData = new FormData();
+        formData.append("session_history", JSON.stringify(conversationHistory));
+        try {
+            const response = await generateTrustReport(formData);
+            const accessToken = localStorage.getItem("accessToken");
+
+            if (response.status === 401 && accessToken) {
+                // access Token過期，用refresh Token去拿新的access Token
+                const checkReTokenStatus = await refresh();
+                if (checkReTokenStatus) {
+                    const response = await createModelByLink(link);
+                    if (response.status === 200) {
+                        onClickCloseBtn();
+                        window.location.reload();
+                    }
+                } else {
+                    // refresh Token過期，重新登入並刪掉 localStorage 裡的東西
+                    // alert("refresh Token過期，請重新登入!");
+                    localStorage.clear();
+                    redirect("/login");
+                }
+            } else {
+                const responseData = await response.json();
+                const error = responseData.message;
+                console.error(error);
+                setError(error);
+            }
+        } catch (error) {
+            console.error("Error durning create model by link: ", error);
+            redirect("/login");
         }
     }
 
@@ -138,7 +173,7 @@ function MessageList({ dummy, dummyName }) {
                     console.log("Request queued, request_id:", responseData.request_id);
                     pollChatResult(responseData.request_id, userMessage); // 開始輪詢
                 }
-                
+
             } else if (response.status === 400) {
                 const responseData = await response.json();
                 const error = responseData.error;
@@ -156,7 +191,7 @@ function MessageList({ dummy, dummyName }) {
                         }
                     } else if (response.status === 429) {
                         alert("後端伺服器忙碌中，請稍後再試");
-                    } 
+                    }
                 } else {
                     // refresh Token過期，重新登入並刪掉 localStorage 裡的東西
                     // alert("refresh Token過期，請重新登入!");
